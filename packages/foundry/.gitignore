@@ -3,12 +3,17 @@ cache/
 out/
 
 # Ignores development broadcast logs
+!/broadcast
 /broadcast/*/31337/
 /broadcast/**/dry-run/
+
+/broadcast/DeployERC4337Factory.s.sol
 
 # Docs
 docs/
 
 # Dotenv file
 .env
-localhost.json
+.VSCodeCounter/
+
+.certora_internal/
