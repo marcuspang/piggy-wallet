@@ -7,3 +7,6 @@
 [submodule "packages/foundry/lib/solidity-bytes-utils"]
 	path = packages/foundry/lib/solidity-bytes-utils
 	url = https://github.com/gnsps/solidity-bytes-utils
+[submodule "packages/foundry/lib/smart-wallet"]
+	path = packages/foundry/lib/smart-wallet
+	url = https://github.com/coinbase/smart-wallet
