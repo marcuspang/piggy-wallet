@@ -29,6 +29,11 @@ contract Timelock is MultiOwnable {
     /// @notice Thrown when the `deadline` has not been reached.
     error TimelockLocked();
 
+    /// @notice Emitted when the timelock is unlocked.
+    ///
+    /// @param unlockedBy The address that unlocked the timelock.
+    event Unlocked(address unlockedBy);
+
     /// @notice Initialize the timelock of this contract.
     ///
     /// @dev Intended to be called contract is first deployed and never again.
@@ -43,7 +48,7 @@ contract Timelock is MultiOwnable {
             revert InvalidEthereumAddressOwner(_lockedOwner);
         }
 
-        TimelockStorage storage $ = _getStorage();
+        TimelockStorage storage $ = _getTimelockStorage();
         $.deadline = deadline;
         $.lockedOwner = _lockedOwner;
     }
@@ -52,29 +57,31 @@ contract Timelock is MultiOwnable {
     ///
     /// @return `true` if the timelock is locked, else `false`.
     function isLocked() public view virtual returns (bool) {
-        return block.timestamp < _getStorage().deadline;
+        return block.timestamp < _getTimelockStorage().deadline;
     }
 
     /// @notice Returns the owner who is locked out by the timelock.
     ///
     /// @return The owner who is locked out by the timelock.
     function lockedOwner() public view virtual returns (bytes memory) {
-        return _getStorage().lockedOwner;
+        return _getTimelockStorage().lockedOwner;
     }
 
     /// @notice Unlocks the timelock.
     ///
     /// @dev Can only be called by the owner.
     function unlock() public virtual onlyOwner {
-        TimelockStorage storage $ = _getStorage();
+        TimelockStorage storage $ = _getTimelockStorage();
         $.deadline = 0;
+
+        emit Unlocked(msg.sender);
     }
 
     /// @notice Checks if the sender is the locked owner of this contract, and whether the timelock is unlocked.
     ///
     /// @dev Revert if the sender is not the owner fo the contract itself.
     function _checkUnlocked() internal view virtual {
-        bytes memory lockedAddress = _getStorage().lockedOwner;
+        bytes memory lockedAddress = _getTimelockStorage().lockedOwner;
         bytes memory encodedAddress = abi.encode(msg.sender);
         // TODO: might be faster to just check keccak256 hashes
         bool isEqual = true;
@@ -92,7 +99,7 @@ contract Timelock is MultiOwnable {
     /// @notice Helper function to get a storage reference to the `TimeLockStorage` struct.
     ///
     /// @return $ A storage reference to the `TimeLockStorage` struct.
-    function _getStorage() internal pure returns (TimelockStorage storage $) {
+    function _getTimelockStorage() internal pure returns (TimelockStorage storage $) {
         assembly ("memory-safe") {
             $.slot := TIMELOCK_OWNABLE_STORAGE_LOCATION
         }

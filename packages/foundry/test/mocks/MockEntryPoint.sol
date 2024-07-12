@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import {TimelockSmartWallet, UserOperation} from "../../src/TimelockSmartWallet.sol";
+import {UserOperation} from "../../src/CoinbaseSmartWallet.sol";
+import {TimelockSmartWallet} from "../../src/TimelockSmartWallet.sol";
 
 contract MockEntryPoint {
     mapping(address => uint256) public balanceOf;

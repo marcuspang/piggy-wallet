@@ -33,12 +33,12 @@ contract TestValidateUserOp is SmartWalletTestBase {
 
         UserOperation memory userOp;
         // Success returns 0.
-        userOp.signature = abi.encode(TimelockSmartWallet.SignatureWrapper(0, abi.encodePacked(t.r, t.s, t.v)));
+        userOp.signature = abi.encode(CoinbaseSmartWallet.SignatureWrapper(0, abi.encodePacked(t.r, t.s, t.v)));
         assertEq(ep.validateUserOp(address(account), userOp, t.userOpHash, t.missingAccountFunds), 0);
         assertEq(address(ep).balance, t.missingAccountFunds);
         // Failure returns 1.
         userOp.signature =
-            abi.encode(TimelockSmartWallet.SignatureWrapper(0, abi.encodePacked(t.r, bytes32(uint256(t.s) ^ 1), t.v)));
+            abi.encode(CoinbaseSmartWallet.SignatureWrapper(0, abi.encodePacked(t.r, bytes32(uint256(t.s) ^ 1), t.v)));
         assertEq(ep.validateUserOp(address(account), userOp, t.userOpHash, t.missingAccountFunds), 1);
         assertEq(address(ep).balance, t.missingAccountFunds * 2);
         // Not entry point reverts.
@@ -54,7 +54,7 @@ contract TestValidateUserOp is SmartWalletTestBase {
         (bytes32 r, bytes32 s) = vm.signP256(passkeyPrivateKey, webAuthn.messageHash);
         s = bytes32(Utils.normalizeS(uint256(s)));
         bytes memory sig = abi.encode(
-            TimelockSmartWallet.SignatureWrapper({
+            CoinbaseSmartWallet.SignatureWrapper({
                 ownerIndex: 1,
                 signatureData: abi.encode(
                     WebAuthn.WebAuthnAuth({
@@ -81,19 +81,19 @@ contract TestValidateUserOp is SmartWalletTestBase {
     function test_reverts_whenSelectorInvalidForReplayableNonceKey() public {
         UserOperation memory userOp;
         userOp.nonce = 0;
-        userOp.callData = abi.encodeWithSelector(TimelockSmartWallet.executeWithoutChainIdValidation.selector, "");
+        userOp.callData = abi.encodeWithSelector(CoinbaseSmartWallet.executeWithoutChainIdValidation.selector, "");
         vm.startPrank(account.entryPoint());
-        vm.expectRevert(abi.encodeWithSelector(TimelockSmartWallet.InvalidNonceKey.selector, 0));
+        vm.expectRevert(abi.encodeWithSelector(CoinbaseSmartWallet.InvalidNonceKey.selector, 0));
         account.validateUserOp(userOp, "", 0);
     }
 
     function test_reverts_whenReplayableNonceKeyInvalidForSelector() public {
         UserOperation memory userOp;
         userOp.nonce = account.REPLAYABLE_NONCE_KEY() << 64;
-        userOp.callData = abi.encodeWithSelector(TimelockSmartWallet.execute.selector, "");
+        userOp.callData = abi.encodeWithSelector(CoinbaseSmartWallet.execute.selector, "");
         vm.startPrank(account.entryPoint());
         vm.expectRevert(
-            abi.encodeWithSelector(TimelockSmartWallet.InvalidNonceKey.selector, account.REPLAYABLE_NONCE_KEY())
+            abi.encodeWithSelector(CoinbaseSmartWallet.InvalidNonceKey.selector, account.REPLAYABLE_NONCE_KEY())
         );
         account.validateUserOp(userOp, "", 0);
     }

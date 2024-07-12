@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.23;
 
-import {CoinbaseSmartWallet} from "./CoinbaseSmartWallet.sol";
-import {ERC1271} from "./ERC1271.sol";
-import {MultiOwnable} from "./MultiOwnable.sol";
-import {Timelock} from "./Timelock.sol";
 import {IAccount} from "account-abstraction/interfaces/IAccount.sol";
 
 import {UserOperation, UserOperationLib} from "account-abstraction/interfaces/UserOperation.sol";
@@ -13,17 +9,17 @@ import {SignatureCheckerLib} from "solady/utils/SignatureCheckerLib.sol";
 import {UUPSUpgradeable} from "solady/utils/UUPSUpgradeable.sol";
 import {WebAuthn} from "webauthn-sol/WebAuthn.sol";
 
+import {ERC1271} from "./ERC1271.sol";
 import {MultiOwnable} from "./MultiOwnable.sol";
 
-/// @title Timelock Smart Wallet
+/// @title Coinbase Smart Wallet
 ///
 /// @notice ERC-4337-compatible smart account, based on Solady's ERC4337 account implementation
 ///         with inspiration from Alchemy's LightAccount and Daimo's DaimoAccount.
 ///
 /// @author Coinbase (https://github.com/coinbase/smart-wallet)
 /// @author Solady (https://github.com/vectorized/solady/blob/main/src/accounts/ERC4337.sol)
-/// @author marcuspang (https://github.com/marcuspang)
-contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Timelock {
+contract CoinbaseSmartWallet is ERC1271, IAccount, MultiOwnable, UUPSUpgradeable, Receiver {
     /// @notice A wrapper struct used for signature validation so that callers
     ///         can identify the owner that signed.
     struct SignatureWrapper {
@@ -80,18 +76,15 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
         _;
     }
 
-    /// @notice Thrown if the `lockedOwnerIndex` is out of bounds.
-    error InvalidLockedOwnerIndex();
-
     /// @notice Reverts if the caller is neither the EntryPoint, the owner, nor the account itself.
-    modifier onlyEntryPointOrOwnerAndUnlocked() virtual {
+    modifier onlyEntryPointOrOwner() virtual {
         if (msg.sender != entryPoint()) {
-            _checkUnlocked();
             _checkOwner();
         }
 
         _;
     }
+
     /// @notice Sends to the EntryPoint (i.e. `msg.sender`) the missing funds for this transaction.
     ///
     /// @dev Subclass MAY override this modifier for better funds management (e.g. send to the
@@ -101,7 +94,6 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
     /// @param missingAccountFunds The minimum value this modifier should send the EntryPoint which
     ///                            MAY be zero, in case there is enough deposit, or the userOp has a
     ///                            paymaster.
-
     modifier payPrefund(uint256 missingAccountFunds) virtual {
         _;
 
@@ -118,28 +110,21 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
         bytes[] memory owners = new bytes[](1);
         owners[0] = abi.encode(address(0));
         _initializeOwners(owners);
-        _initializeTimelock(0, abi.encode(address(0)));
     }
 
-    /// @notice Initializes the account with the `owners` and `deadline`.
+    /// @notice Initializes the account with the `owners`.
     ///
     /// @dev Reverts if the account has had at least one owner, i.e. has been initialized.
     ///
-    /// @param owners   Array of initial owners for this account. Each item should be
-    ///                 an ABI encoded Ethereum address, i.e. 32 bytes with 12 leading 0 bytes,
-    ///                 or a 64 byte public key.
-    /// @param lockedOwnerIndex The index of the owner that will be locked out.
-    /// @param deadline The deadline for the account to be deployed.
-    function initialize(bytes[] calldata owners, uint256 lockedOwnerIndex, uint256 deadline) external payable virtual {
+    /// @param owners Array of initial owners for this account. Each item should be
+    ///               an ABI encoded Ethereum address, i.e. 32 bytes with 12 leading 0 bytes,
+    ///               or a 64 byte public key.
+    function initialize(bytes[] calldata owners) external payable virtual {
         if (nextOwnerIndex() != 0) {
             revert Initialized();
         }
-        if (lockedOwnerIndex >= owners.length) {
-            revert InvalidLockedOwnerIndex();
-        }
 
         _initializeOwners(owners);
-        _initializeTimelock(deadline, owners[lockedOwnerIndex]);
     }
 
     /// @inheritdoc IAccount
@@ -223,7 +208,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
         external
         payable
         virtual
-        onlyEntryPointOrOwnerAndUnlocked
+        onlyEntryPointOrOwner
     {
         _call(target, value, data);
     }
@@ -233,7 +218,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
     /// @dev Can only be called by the Entrypoint or an owner of this account (including itself).
     ///
     /// @param calls The list of `Call`s to execute.
-    function executeBatch(Call[] calldata calls) external payable virtual onlyEntryPointOrOwnerAndUnlocked {
+    function executeBatch(Call[] calldata calls) external payable virtual onlyEntryPointOrOwner {
         for (uint256 i; i < calls.length; i++) {
             _call(calls[i].target, calls[i].value, calls[i].data);
         }
@@ -272,12 +257,12 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
     /// @param functionSelector The function selector to check.
     ////
     /// @return `true` is the function selector is allowed to skip the chain ID validation, else `false`.
-    function canSkipChainIdValidation(bytes4 functionSelector) public pure virtual returns (bool) {
+    function canSkipChainIdValidation(bytes4 functionSelector) public pure returns (bool) {
         if (
             functionSelector == MultiOwnable.addOwnerPublicKey.selector
                 || functionSelector == MultiOwnable.addOwnerAddress.selector
                 || functionSelector == MultiOwnable.removeOwnerAtIndex.selector
-                || functionSelector == MultiOwnable.removeLastOwner.selector || functionSelector == Timelock.unlock.selector
+                || functionSelector == MultiOwnable.removeLastOwner.selector
                 || functionSelector == UUPSUpgradeable.upgradeToAndCall.selector
         ) {
             return true;
@@ -346,7 +331,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
     function _authorizeUpgrade(address) internal view virtual override(UUPSUpgradeable) onlyOwner {}
 
     /// @inheritdoc ERC1271
-    function _domainNameAndVersion() internal pure virtual override(ERC1271) returns (string memory, string memory) {
-        return ("Timelock Smart Wallet", "1");
+    function _domainNameAndVersion() internal pure override(ERC1271) returns (string memory, string memory) {
+        return ("Coinbase Smart Wallet", "1");
     }
 }

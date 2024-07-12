@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.23;
 
+import {Bounty} from "./Bounty.sol";
 import {CoinbaseSmartWallet} from "./CoinbaseSmartWallet.sol";
 import {ERC1271} from "./ERC1271.sol";
 import {MultiOwnable} from "./MultiOwnable.sol";
@@ -15,7 +16,7 @@ import {WebAuthn} from "webauthn-sol/WebAuthn.sol";
 
 import {MultiOwnable} from "./MultiOwnable.sol";
 
-/// @title Timelock Smart Wallet
+/// @title Timelock Bounty Smart Wallet
 ///
 /// @notice ERC-4337-compatible smart account, based on Solady's ERC4337 account implementation
 ///         with inspiration from Alchemy's LightAccount and Daimo's DaimoAccount.
@@ -23,7 +24,7 @@ import {MultiOwnable} from "./MultiOwnable.sol";
 /// @author Coinbase (https://github.com/coinbase/smart-wallet)
 /// @author Solady (https://github.com/vectorized/solady/blob/main/src/accounts/ERC4337.sol)
 /// @author marcuspang (https://github.com/marcuspang)
-contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Timelock {
+contract TimelockBountySmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Timelock, Bounty {
     /// @notice A wrapper struct used for signature validation so that callers
     ///         can identify the owner that signed.
     struct SignatureWrapper {
@@ -119,6 +120,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
         owners[0] = abi.encode(address(0));
         _initializeOwners(owners);
         _initializeTimelock(0, abi.encode(address(0)));
+        _initializeBounty(address(0));
     }
 
     /// @notice Initializes the account with the `owners` and `deadline`.
@@ -130,7 +132,11 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
     ///                 or a 64 byte public key.
     /// @param lockedOwnerIndex The index of the owner that will be locked out.
     /// @param deadline The deadline for the account to be deployed.
-    function initialize(bytes[] calldata owners, uint256 lockedOwnerIndex, uint256 deadline) external payable virtual {
+    function initialize(bytes[] calldata owners, uint256 lockedOwnerIndex, uint256 deadline, address bountyToken)
+        external
+        payable
+        virtual
+    {
         if (nextOwnerIndex() != 0) {
             revert Initialized();
         }
@@ -140,6 +146,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
 
         _initializeOwners(owners);
         _initializeTimelock(deadline, owners[lockedOwnerIndex]);
+        _initializeBounty(bountyToken);
     }
 
     /// @inheritdoc IAccount
@@ -278,6 +285,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
                 || functionSelector == MultiOwnable.addOwnerAddress.selector
                 || functionSelector == MultiOwnable.removeOwnerAtIndex.selector
                 || functionSelector == MultiOwnable.removeLastOwner.selector || functionSelector == Timelock.unlock.selector
+                || functionSelector == Bounty.addBounty.selector || functionSelector == Bounty.claimBounty.selector
                 || functionSelector == UUPSUpgradeable.upgradeToAndCall.selector
         ) {
             return true;
@@ -347,6 +355,6 @@ contract TimelockSmartWallet is ERC1271, IAccount, UUPSUpgradeable, Receiver, Ti
 
     /// @inheritdoc ERC1271
     function _domainNameAndVersion() internal pure virtual override(ERC1271) returns (string memory, string memory) {
-        return ("Timelock Smart Wallet", "1");
+        return ("Timelock Bounty Smart Wallet", "1");
     }
 }
