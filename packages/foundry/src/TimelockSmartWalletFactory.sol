@@ -48,7 +48,7 @@ contract TimelockSmartWalletFactory {
         }
 
         (bool alreadyDeployed, address accountAddress) =
-            LibClone.createDeterministicERC1967(msg.value, implementation, _getSalt(owners, nonce));
+            LibClone.createDeterministicERC1967(msg.value, implementation, _getSalt(owners, deadline, nonce));
 
         account = TimelockSmartWallet(payable(accountAddress));
 
@@ -60,11 +60,12 @@ contract TimelockSmartWalletFactory {
     /// @notice Returns the deterministic address of the account that would be created by `createAccount`.
     ///
     /// @param owners Array of initial owners. Each item should be an ABI encoded address or 64 byte public key.
+    /// @param deadline The deadline for the account to be deployed.
     /// @param nonce  The nonce provided to `createAccount()`.
     ///
     /// @return The predicted account deployment address.
-    function getAddress(bytes[] calldata owners, uint256 nonce) external view returns (address) {
-        return LibClone.predictDeterministicAddress(initCodeHash(), _getSalt(owners, nonce), address(this));
+    function getAddress(bytes[] calldata owners, uint256 deadline, uint256 nonce) external view returns (address) {
+        return LibClone.predictDeterministicAddress(initCodeHash(), _getSalt(owners, deadline, nonce), address(this));
     }
 
     /// @notice Returns the initialization code hash of the account:
@@ -78,10 +79,11 @@ contract TimelockSmartWalletFactory {
     /// @notice Returns the create2 salt for `LibClone.predictDeterministicAddress`
     ///
     /// @param owners Array of initial owners. Each item should be an ABI encoded address or 64 byte public key.
+    /// @param deadline The deadline for the account to be deployed.
     /// @param nonce  The nonce provided to `createAccount()`.
     ///
     /// @return The computed salt.
-    function _getSalt(bytes[] calldata owners, uint256 nonce) internal pure returns (bytes32) {
-        return keccak256(abi.encode(owners, nonce));
+    function _getSalt(bytes[] calldata owners, uint256 deadline, uint256 nonce) internal pure returns (bytes32) {
+        return keccak256(abi.encode(owners, deadline, nonce));
     }
 }

@@ -25,7 +25,7 @@ contract TimelockSmartWalletFactoryTest is Test {
     }
 
     function test_createAccountSetsOwnersCorrectly() public {
-        address expectedAddress = factory.getAddress(owners, 0);
+        address expectedAddress = factory.getAddress(owners, 0, 0);
         vm.expectCall(expectedAddress, abi.encodeCall(TimelockSmartWallet.initialize, (owners, 0)));
         TimelockSmartWallet a = factory.createAccount{value: 1e18}(owners, 0, 0);
         assert(a.isOwnerAddress(address(1)));
@@ -54,13 +54,13 @@ contract TimelockSmartWalletFactoryTest is Test {
     }
 
     function test_createAccountDeploysToPredeterminedAddress() public {
-        address p = factory.getAddress(owners, 0);
+        address p = factory.getAddress(owners, 0, 0);
         TimelockSmartWallet a = factory.createAccount{value: 1e18}(owners, 0, 0);
         assertEq(address(a), p);
     }
 
     function test_CreateAccount_ReturnsPredeterminedAddress_WhenAccountAlreadyExists() public {
-        address p = factory.getAddress(owners, 0);
+        address p = factory.getAddress(owners, 0, 0);
         TimelockSmartWallet a = factory.createAccount{value: 1e18}(owners, 0, 0);
         TimelockSmartWallet b = factory.createAccount{value: 1e18}(owners, 0, 0);
         assertEq(address(a), p);

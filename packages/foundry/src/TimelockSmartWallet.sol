@@ -116,13 +116,14 @@ contract TimelockSmartWallet is ERC1271, IAccount, Timelock, UUPSUpgradeable, Re
         _initializeTimelock(0);
     }
 
-    /// @notice Initializes the account with the `owners`.
+    /// @notice Initializes the account with the `owners` and `deadline`.
     ///
     /// @dev Reverts if the account has had at least one owner, i.e. has been initialized.
     ///
-    /// @param owners Array of initial owners for this account. Each item should be
-    ///               an ABI encoded Ethereum address, i.e. 32 bytes with 12 leading 0 bytes,
-    ///               or a 64 byte public key.
+    /// @param owners   Array of initial owners for this account. Each item should be
+    ///                 an ABI encoded Ethereum address, i.e. 32 bytes with 12 leading 0 bytes,
+    ///                 or a 64 byte public key.
+    /// @param deadline The deadline for the account to be deployed.
     function initialize(bytes[] calldata owners, uint256 deadline) external payable virtual {
         if (nextOwnerIndex() != 0) {
             revert Initialized();

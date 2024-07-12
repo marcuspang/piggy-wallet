@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {MockTarget} from "../mocks/MockTarget.sol";
 import "./SmartWalletTestBase.sol";
 
-contract TestExecuteWithoutChainIdValidation is SmartWalletTestBase {
+contract TestExecute is SmartWalletTestBase {
     function setUp() public override {
         userOpCalldata = abi.encodeWithSelector(TimelockSmartWallet.execute.selector);
         super.setUp();
