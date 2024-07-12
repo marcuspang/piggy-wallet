@@ -33,7 +33,7 @@ contract TestExecuteBatch is SmartWalletTestBase, TestPlus {
 
     function testExecuteBatch(uint256 r) public {
         account = new MockTimelockSmartWallet();
-        account.initialize(owners, 0);
+        account.initialize(owners, 0, 0);
         vm.prank(signer);
         account.addOwnerAddress(address(this));
         vm.deal(address(account), 1 ether);

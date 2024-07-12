@@ -20,7 +20,7 @@ contract TimelockSmartWallet1271InputGeneratorTest is Test {
 
     function testGetReplaySafeHashForDeployedAccount() public {
         owners.push(abi.encode(address(1)));
-        deployedAccount = TimelockSmartWallet(payable(factory.createAccount(owners, 1, 0)));
+        deployedAccount = TimelockSmartWallet(payable(factory.createAccount(owners, 0, 1, 0)));
 
         bytes32 hash = 0x15fa6f8c855db1dccbb8a42eef3a7b83f11d29758e84aed37312527165d5eec5;
         bytes32 replaySafeHash = deployedAccount.replaySafeHash(hash);
@@ -30,13 +30,13 @@ contract TimelockSmartWallet1271InputGeneratorTest is Test {
 
     function testGetReplaySafeHashForUndeployedAccount() public {
         owners.push(abi.encode(address(1)));
-        TimelockSmartWallet undeployedAccount = TimelockSmartWallet(payable(factory.getAddress(owners, 0, 0)));
+        TimelockSmartWallet undeployedAccount = TimelockSmartWallet(payable(factory.getAddress(owners, 0, 0, 0)));
         bytes32 hash = 0x15fa6f8c855db1dccbb8a42eef3a7b83f11d29758e84aed37312527165d5eec5;
         ERC1271InputGenerator generator = new ERC1271InputGenerator(
             undeployedAccount,
             hash,
             address(factory),
-            abi.encodeWithSignature("createAccount(bytes[],uint256,uint256)", owners, 0, 0)
+            abi.encodeWithSignature("createAccount(bytes[],uint256,uint256,uint256)", owners, 0, 0, 0)
         );
 
         // This is now deployed.

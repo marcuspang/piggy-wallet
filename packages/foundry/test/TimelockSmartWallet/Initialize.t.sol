@@ -12,6 +12,6 @@ contract TestInitialize is SmartWalletTestBase {
     function test_cannotInitImplementation() public {
         account = new TimelockSmartWallet();
         vm.expectRevert(TimelockSmartWallet.Initialized.selector);
-        account.initialize(owners, 0);
+        account.initialize(owners, 0, 0);
     }
 }

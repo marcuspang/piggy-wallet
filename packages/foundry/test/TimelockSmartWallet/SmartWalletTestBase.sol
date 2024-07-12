@@ -28,7 +28,7 @@ contract SmartWalletTestBase is Test {
         account = new MockTimelockSmartWallet();
         owners.push(abi.encode(signer));
         owners.push(passkeyOwner);
-        account.initialize(owners, 0);
+        account.initialize(owners, 0, 0);
     }
 
     function _sendUserOperation(UserOperation memory userOp) internal {

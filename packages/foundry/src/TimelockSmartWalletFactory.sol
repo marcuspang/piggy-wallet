@@ -37,7 +37,7 @@ contract TimelockSmartWalletFactory {
     ///
     /// @return account The address of the ERC-1967 proxy created with inputs `owners`, `nonce`, and
     ///                 `this.implementation`.
-    function createAccount(bytes[] calldata owners, uint256 deadline, uint256 nonce)
+    function createAccount(bytes[] calldata owners, uint256 ownerIndex, uint256 deadline, uint256 nonce)
         external
         payable
         virtual
@@ -47,13 +47,14 @@ contract TimelockSmartWalletFactory {
             revert OwnerRequired();
         }
 
-        (bool alreadyDeployed, address accountAddress) =
-            LibClone.createDeterministicERC1967(msg.value, implementation, _getSalt(owners, deadline, nonce));
+        (bool alreadyDeployed, address accountAddress) = LibClone.createDeterministicERC1967(
+            msg.value, implementation, _getSalt(owners, ownerIndex, deadline, nonce)
+        );
 
         account = TimelockSmartWallet(payable(accountAddress));
 
         if (!alreadyDeployed) {
-            account.initialize(owners, deadline);
+            account.initialize(owners, ownerIndex, deadline);
         }
     }
 
@@ -64,8 +65,14 @@ contract TimelockSmartWalletFactory {
     /// @param nonce  The nonce provided to `createAccount()`.
     ///
     /// @return The predicted account deployment address.
-    function getAddress(bytes[] calldata owners, uint256 deadline, uint256 nonce) external view returns (address) {
-        return LibClone.predictDeterministicAddress(initCodeHash(), _getSalt(owners, deadline, nonce), address(this));
+    function getAddress(bytes[] calldata owners, uint256 ownerIndex, uint256 deadline, uint256 nonce)
+        external
+        view
+        returns (address)
+    {
+        return LibClone.predictDeterministicAddress(
+            initCodeHash(), _getSalt(owners, ownerIndex, deadline, nonce), address(this)
+        );
     }
 
     /// @notice Returns the initialization code hash of the account:
@@ -83,7 +90,11 @@ contract TimelockSmartWalletFactory {
     /// @param nonce  The nonce provided to `createAccount()`.
     ///
     /// @return The computed salt.
-    function _getSalt(bytes[] calldata owners, uint256 deadline, uint256 nonce) internal pure returns (bytes32) {
-        return keccak256(abi.encode(owners, deadline, nonce));
+    function _getSalt(bytes[] calldata owners, uint256 ownerIndex, uint256 deadline, uint256 nonce)
+        internal
+        pure
+        returns (bytes32)
+    {
+        return keccak256(abi.encode(owners, ownerIndex, deadline, nonce));
     }
 }

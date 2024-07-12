@@ -11,7 +11,7 @@ contract TestUpgradeToAndCall is SmartWalletTestBase {
     function setUp() public override {
         super.setUp();
         TimelockSmartWalletFactory factory = new TimelockSmartWalletFactory(address(new TimelockSmartWallet()));
-        account = factory.createAccount(owners, 0, 1);
+        account = factory.createAccount(owners, 0, 0, 1);
         vm.startPrank(signer);
     }
 

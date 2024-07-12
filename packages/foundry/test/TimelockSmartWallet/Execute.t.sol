@@ -37,4 +37,31 @@ contract TestExecute is SmartWalletTestBase {
         vm.expectRevert(abi.encodeWithSignature("TargetError(bytes)", data));
         account.execute(target, 123, abi.encodeWithSignature("revertWithTargetError(bytes)", data));
     }
+
+    function test_executeRevertsIfTimelockedOwner() public {
+        uint256 lockedTimestamp = 1000000000;
+        account = new MockTimelockSmartWallet();
+        account.initialize(owners, 0, lockedTimestamp + 1000);
+
+        vm.deal(address(account), 1 ether);
+        vm.startPrank(signer);
+        vm.warp(lockedTimestamp);
+        address target = address(new MockTarget());
+        assertEq(account.isLocked(), true);
+        vm.expectRevert(abi.encodeWithSelector(Timelock.TimelockLocked.selector));
+        account.execute(target, 123, abi.encodeWithSignature("setData(bytes)", _randomBytes(111)));
+    }
+
+    function test_executeWorksIfUnlocked() public {
+        uint256 lockedTimestamp = 1000000000;
+        account = new MockTimelockSmartWallet();
+        account.initialize(owners, 0, lockedTimestamp + 1000);
+
+        vm.deal(address(account), 1 ether);
+        vm.startPrank(signer);
+        vm.warp(lockedTimestamp + 1000);
+        assertEq(account.isLocked(), false);
+        address target = address(new MockTarget());
+        account.execute(target, 123, abi.encodeWithSignature("setData(bytes)", _randomBytes(111)));
+    }
 }

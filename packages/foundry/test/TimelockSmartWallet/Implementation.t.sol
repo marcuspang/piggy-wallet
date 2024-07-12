@@ -12,7 +12,7 @@ contract TestImplementation is SmartWalletTestBase {
     function setUp() public override {
         super.setUp();
         TimelockSmartWalletFactory factory = new TimelockSmartWalletFactory(implementation);
-        account = factory.createAccount(owners, 0, 1);
+        account = factory.createAccount(owners, 0, 0, 1);
     }
 
     function testImplementation() public {

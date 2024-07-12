@@ -69,6 +69,9 @@ contract TimelockSmartWallet is ERC1271, IAccount, Timelock, UUPSUpgradeable, Re
     /// @param key The invalid `UserOperation.nonce` key.
     error InvalidNonceKey(uint256 key);
 
+    /// @notice Thrown if the `lockedOwnerIndex` is out of bounds.
+    error InvalidLockedOwnerIndex();
+
     /// @notice Reverts if the caller is not the EntryPoint.
     modifier onlyEntryPoint() virtual {
         if (msg.sender != entryPoint()) {
@@ -113,7 +116,7 @@ contract TimelockSmartWallet is ERC1271, IAccount, Timelock, UUPSUpgradeable, Re
         bytes[] memory owners = new bytes[](1);
         owners[0] = abi.encode(address(0));
         _initializeOwners(owners);
-        _initializeTimelock(0);
+        _initializeTimelock(0, abi.encode(address(0)));
     }
 
     /// @notice Initializes the account with the `owners` and `deadline`.
@@ -124,13 +127,16 @@ contract TimelockSmartWallet is ERC1271, IAccount, Timelock, UUPSUpgradeable, Re
     ///                 an ABI encoded Ethereum address, i.e. 32 bytes with 12 leading 0 bytes,
     ///                 or a 64 byte public key.
     /// @param deadline The deadline for the account to be deployed.
-    function initialize(bytes[] calldata owners, uint256 deadline) external payable virtual {
+    function initialize(bytes[] calldata owners, uint256 lockedOwnerIndex, uint256 deadline) external payable virtual {
         if (nextOwnerIndex() != 0) {
             revert Initialized();
         }
+        if (lockedOwnerIndex >= owners.length) {
+            revert InvalidLockedOwnerIndex();
+        }
 
         _initializeOwners(owners);
-        _initializeTimelock(deadline);
+        _initializeTimelock(deadline, owners[lockedOwnerIndex]);
     }
 
     /// @inheritdoc IAccount

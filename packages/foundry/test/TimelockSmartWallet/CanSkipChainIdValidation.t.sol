@@ -9,6 +9,7 @@ contract TestCanSkipChainIdValidation is SmartWalletTestBase {
         MultiOwnable.addOwnerPublicKey.selector,
         MultiOwnable.removeOwnerAtIndex.selector,
         MultiOwnable.removeLastOwner.selector,
+        Timelock.unlock.selector,
         UUPSUpgradeable.upgradeToAndCall.selector
     ];
     bytes4[] otherSelectors = [TimelockSmartWallet.execute.selector, TimelockSmartWallet.executeBatch.selector];

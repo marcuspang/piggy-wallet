@@ -35,7 +35,7 @@ contract TestIsValidSignature is SmartWalletTestBase {
 
     function testSmartWalletSigner() public {
         MockTimelockSmartWallet otherAccount = new MockTimelockSmartWallet();
-        otherAccount.initialize(owners, 0);
+        otherAccount.initialize(owners, 0, 0);
 
         vm.prank(signer);
         account.addOwnerAddress(address(otherAccount));

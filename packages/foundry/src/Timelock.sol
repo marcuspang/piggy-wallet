@@ -10,7 +10,7 @@ struct TimelockStorage {
     /// @dev The deadline for the timelock.
     uint256 deadline;
     /// @dev The user who is locked out by the timelock.
-    address lockedOwner;
+    bytes lockedOwner;
 }
 
 /// @title Time Lock
@@ -34,9 +34,18 @@ contract Timelock is MultiOwnable {
     /// @dev Intended to be called contract is first deployed and never again.
     ///
     /// @param deadline The deadline for the timelock.
-    function _initializeTimelock(uint256 deadline) internal virtual {
+    function _initializeTimelock(uint256 deadline, bytes memory _lockedOwner) internal virtual {
+        if (_lockedOwner.length != 32 && _lockedOwner.length != 64) {
+            revert InvalidOwnerBytesLength(_lockedOwner);
+        }
+
+        if (_lockedOwner.length == 32 && uint256(bytes32(_lockedOwner)) > type(uint160).max) {
+            revert InvalidEthereumAddressOwner(_lockedOwner);
+        }
+
         TimelockStorage storage $ = _getStorage();
         $.deadline = deadline;
+        $.lockedOwner = _lockedOwner;
     }
 
     /// @notice Returns whether the timelock is locked.
@@ -49,7 +58,7 @@ contract Timelock is MultiOwnable {
     /// @notice Returns the owner who is locked out by the timelock.
     ///
     /// @return The owner who is locked out by the timelock.
-    function lockedOwner() public view virtual returns (address) {
+    function lockedOwner() public view virtual returns (bytes memory) {
         return _getStorage().lockedOwner;
     }
 
@@ -65,8 +74,17 @@ contract Timelock is MultiOwnable {
     ///
     /// @dev Revert if the sender is not the owner fo the contract itself.
     function _checkUnlocked() internal view virtual {
-        address lockedAddress = _getStorage().lockedOwner;
-        if (msg.sender == lockedAddress && isLocked()) {
+        bytes memory lockedAddress = _getStorage().lockedOwner;
+        bytes memory encodedAddress = abi.encode(msg.sender);
+        // TODO: might be faster to just check keccak256 hashes
+        bool isEqual = true;
+        for (uint256 i; i < lockedAddress.length; i++) {
+            if (lockedAddress[i] != encodedAddress[i]) {
+                isEqual = false;
+                break;
+            }
+        }
+        if (isEqual && isLocked()) {
             revert TimelockLocked();
         }
     }
