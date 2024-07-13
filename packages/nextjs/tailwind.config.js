@@ -82,6 +82,10 @@ module.exports = {
       animation: {
         "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
+      fontFamily: {
+        heading: ["'Fredoka Variable'", "sans-serif"],
+        body: ["'Quicksand Variable'", "sans-serif"],
+      },
     },
   },
 };

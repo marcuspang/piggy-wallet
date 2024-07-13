@@ -1,18 +1,14 @@
-import { FunctionComponent, useState } from "react";
-import { TextField, Icon } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { FunctionComponent, useState } from "react";
 import styles from "./FrameComponent.module.css";
 
 export type FrameComponentType = {
   className?: string;
 };
 
-const FrameComponent: FunctionComponent<FrameComponentType> = ({
-  className = "",
-}) => {
-  const [frameDateTimePickerValue, setFrameDateTimePickerValue] =
-    useState(null);
+const FrameComponent: FunctionComponent<FrameComponentType> = ({ className = "" }) => {
+  const [frameDateTimePickerValue, setFrameDateTimePickerValue] = useState(null);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <section className={[styles.headerWrapper, className].join(" ")}>
@@ -62,13 +58,7 @@ const FrameComponent: FunctionComponent<FrameComponentType> = ({
                   placeholder: "9:41",
                 },
                 openPickerIcon: {
-                  component: () => (
-                    <img
-                      width="27.4px"
-                      height="13px"
-                      src="/-statusbarbattery.svg"
-                    />
-                  ),
+                  component: () => <img width="27.4px" height="13px" src="/-statusbarbattery.svg" />,
                 },
               }}
             />
