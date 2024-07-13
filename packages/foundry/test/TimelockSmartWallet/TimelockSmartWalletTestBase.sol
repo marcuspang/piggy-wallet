@@ -8,7 +8,7 @@ import "../../src/TimelockSmartWallet.sol";
 import {MockTimelockSmartWallet} from "../mocks/MockTimelockSmartWallet.sol";
 import {Static} from "./Static.sol";
 
-contract SmartWalletTestBase is Test {
+contract TimelockSmartWalletTestBase is Test {
     TimelockSmartWallet public account;
     uint256 signerPrivateKey = 0xa11ce;
     address signer = vm.addr(signerPrivateKey);

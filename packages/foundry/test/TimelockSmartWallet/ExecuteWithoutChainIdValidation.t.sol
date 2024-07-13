@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./SmartWalletTestBase.sol";
+import "./TimelockSmartWalletTestBase.sol";
 
-contract TestExecuteWithoutChainIdValidation is SmartWalletTestBase {
+contract TestExecuteWithoutChainIdValidation is TimelockSmartWalletTestBase {
     bytes[] calls;
 
     function setUp() public override {

@@ -4,9 +4,9 @@ pragma solidity ^0.8.0;
 import "webauthn-sol/../test/Utils.sol";
 
 import {MockEntryPoint} from "../mocks/MockEntryPoint.sol";
-import "./SmartWalletTestBase.sol";
+import "./TimelockSmartWalletTestBase.sol";
 
-contract TestValidateUserOp is SmartWalletTestBase {
+contract TestValidateUserOp is TimelockSmartWalletTestBase {
     struct _TestTemps {
         bytes32 userOpHash;
         address signer;

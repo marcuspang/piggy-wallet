@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./SmartWalletTestBase.sol";
+import "./TimelockSmartWalletTestBase.sol";
 
-contract TestInitialize is SmartWalletTestBase {
+contract TestInitialize is TimelockSmartWalletTestBase {
     function testInitialize() public view {
         assert(account.isOwnerAddress(signer));
         assert(account.isOwnerBytes(passkeyOwner));

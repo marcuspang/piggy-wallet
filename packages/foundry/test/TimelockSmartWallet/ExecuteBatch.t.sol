@@ -4,9 +4,9 @@ pragma solidity ^0.8.0;
 import "solady/../test/utils/TestPlus.sol";
 
 import {MockTarget} from "../mocks/MockTarget.sol";
-import "./SmartWalletTestBase.sol";
+import "./TimelockSmartWalletTestBase.sol";
 
-contract TestExecuteBatch is SmartWalletTestBase, TestPlus {
+contract TestExecuteBatch is TimelockSmartWalletTestBase, TestPlus {
     function testExecuteBatch() public {
         vm.deal(address(account), 1 ether);
         vm.prank(signer);

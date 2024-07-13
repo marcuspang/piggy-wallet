@@ -4,9 +4,9 @@ pragma solidity ^0.8.0;
 import {TimelockSmartWallet} from "../../src/TimelockSmartWallet.sol";
 import {TimelockSmartWalletFactory} from "../../src/TimelockSmartWalletFactory.sol";
 
-import "./SmartWalletTestBase.sol";
+import "./TimelockSmartWalletTestBase.sol";
 
-contract TestImplementation is SmartWalletTestBase {
+contract TestImplementation is TimelockSmartWalletTestBase {
     address implementation = address(new TimelockSmartWallet());
 
     function setUp() public override {
