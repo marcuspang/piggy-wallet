@@ -1,0 +1,92 @@
+.icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.inputs {
+  border-radius: var(--spacing-md) 0 var(--spacing-md) var(--br-base);
+  background-color: var(--success-300);
+  border-top: 1px solid var(--success-600);
+  border-bottom: 1px solid var(--success-600);
+  border-left: 1px solid var(--success-600);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-10xl);
+}
+.earned2,
+.walkTheDog {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 101px;
+}
+.earned2 {
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: var(--black-500);
+  min-width: 79px;
+}
+.saturdayTask {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-xl) 0 0;
+}
+.checkIcon {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.checkbox,
+.saturdayName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkbox {
+  border-radius: var(--br-5xs);
+  background-color: var(--success-500);
+  overflow: hidden;
+  justify-content: center;
+}
+.saturdayName {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs1,
+.saturdayInput {
+  display: flex;
+  align-items: flex-start;
+}
+.inputs1 {
+  width: 271px;
+  border-radius: 0 var(--spacing-md) var(--br-base) var(--spacing-md);
+  background-color: var(--success-50);
+  border: 1px solid var(--success-600);
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+}
+.saturdayInput {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--gap-0);
+  row-gap: 20px;
+  text-align: left;
+  font-size: var(--paragraph-medium-medium-size);
+  color: var(--neutral-900);
+  font-family: var(--paragraph-small-bold);
+}

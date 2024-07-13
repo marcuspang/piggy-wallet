@@ -1,0 +1,330 @@
+.icons1 {
+  width: 27px;
+  height: 27px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.home,
+.navigation {
+  display: flex;
+  align-items: center;
+}
+.home {
+  width: 50px;
+  height: 9px;
+  position: relative;
+  line-height: 16px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.navigation {
+  height: 42px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 var(--padding-8xs);
+  box-sizing: border-box;
+}
+.icongolfclub,
+.lessons {
+  position: relative;
+  flex-shrink: 0;
+}
+.icongolfclub {
+  width: 26.1px;
+  height: 27px;
+  overflow: hidden;
+  display: none;
+}
+.lessons {
+  width: 50px;
+  height: 9px;
+  line-height: 16px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navigation1 {
+  align-self: stretch;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--padding-8xs);
+  color: var(--black-500);
+}
+.left {
+  width: 160.7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+}
+.iconbookopen {
+  margin: 0;
+  width: 27px;
+  height: 27px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.library,
+.navigation2 {
+  display: flex;
+  align-items: center;
+}
+.library {
+  align-self: stretch;
+  height: 9px;
+  position: relative;
+  line-height: 16px;
+  font-weight: 300;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.navigation2 {
+  height: 42px;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 var(--padding-8xs);
+  box-sizing: border-box;
+}
+.icongear {
+  width: 27px;
+  height: 27px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.navigation3,
+.settings {
+  display: flex;
+  align-items: center;
+}
+.settings {
+  align-self: stretch;
+  height: 9px;
+  position: relative;
+  line-height: 16px;
+  font-weight: 300;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.navigation3 {
+  height: 42px;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 var(--padding-8xs);
+  box-sizing: border-box;
+}
+.icons,
+.right {
+  flex-direction: row;
+  gap: var(--gap-xl);
+}
+.right {
+  width: 160.7px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0 0 var(--padding-2xl);
+  box-sizing: border-box;
+  color: var(--black-500);
+}
+.icons {
+  align-self: stretch;
+  display: none;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.home03Icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.home1 {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 40px;
+}
+.navigationButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xx-sm) var(--padding-lgi);
+  gap: var(--spacing-xx-sm);
+}
+.flag02Icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.goals {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 38px;
+}
+.navigationButton1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xx-sm) var(--padding-xl);
+  gap: var(--spacing-xx-sm);
+}
+.navigationButtonList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.checkSquareBroken {
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.tasks {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 38px;
+}
+.navigationButton2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xx-sm) var(--padding-lgi);
+  gap: var(--spacing-xx-sm);
+}
+.messageChatCircleIcon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.chat {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 32px;
+}
+.navigationButton3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xx-sm) var(--padding-3xl);
+  gap: var(--spacing-xx-sm);
+  color: var(--text-default-secondary);
+}
+.navigationButtonList1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--brand-500);
+}
+.icons2 {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.qrCode02Icon {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.actionButton {
+  position: absolute;
+  top: 0;
+  left: 156px;
+  border-radius: var(--br-81xl);
+  width: 78px;
+  height: 78px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-base) var(--padding-3xs);
+  box-sizing: border-box;
+  background-image: url(/public/action-button@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  z-index: 1;
+}
+.navBarContent,
+.progressBar {
+  position: relative;
+  flex-shrink: 0;
+}
+.navBarContent {
+  margin-top: -86px;
+  align-self: stretch;
+  height: 77px;
+  font-size: var(--paragraph-small-bold-size);
+  color: var(--neutral-500);
+  font-family: var(--paragraph-small-bold);
+}
+.progressBar {
+  height: 4px;
+  width: 136.2px;
+  border-radius: var(--br-9xs);
+  background-color: var(--color-gainsboro-100);
+}
+.progress {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 var(--padding-xl) 0 var(--padding-3xl);
+}
+.navbarCoach {
+  width: 100%;
+  height: 86px;
+  margin: 0 !important;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-gray-100);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--padding-60xl) var(--padding-base) var(--padding-10xs);
+  box-sizing: border-box;
+  gap: var(--gap-4xs);
+  z-index: 1;
+  text-align: center;
+  font-size: var(--text-xs-light-size);
+  color: var(--brand-green-500);
+  font-family: var(--text-xs-light);
+}

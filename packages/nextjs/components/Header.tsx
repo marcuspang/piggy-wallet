@@ -1,116 +1,107 @@
-"use client";
+import { FunctionComponent, useMemo, type CSSProperties } from "react";
+import styles from "./Header.module.css";
 
-import React, { useCallback, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
-import { Bars3Icon, BugAntIcon, WalletIcon } from "@heroicons/react/24/outline";
-import { FaucetButton } from "~~/components/scaffold-eth";
-import { useOutsideClick } from "~~/hooks/scaffold-eth";
+export type HeaderType = {
+  className?: string;
+  tasks?: string;
+  chevronLeft1?: string;
+  menu?: string;
 
-type HeaderMenuLink = {
-  label: string;
-  href: string;
-  icon?: React.ReactNode;
+  /** Style props */
+  headerAlignSelf?: CSSProperties["alignSelf"];
+  headerPosition?: CSSProperties["position"];
+  headerTop?: CSSProperties["top"];
+  headerLeft?: CSSProperties["left"];
+  headerWidth?: CSSProperties["width"];
 };
 
-export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
-  {
-    label: "Smart Wallet",
-    href: "/safe",
-    icon: <WalletIcon className="h-4 w-4" />,
-  },
-];
-
-export const HeaderMenuLinks = () => {
-  const pathname = usePathname();
-
-  return (
-    <>
-      {menuLinks.map(({ label, href, icon }) => {
-        const isActive = pathname === href;
-        return (
-          <li key={href}>
-            <Link
-              href={href}
-              passHref
-              className={`${
-                isActive ? "bg-secondary shadow-md" : ""
-              } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
-            >
-              {icon}
-              <span>{label}</span>
-            </Link>
-          </li>
-        );
-      })}
-    </>
-  );
-};
-
-/**
- * Site header
- */
-export const Header = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const burgerMenuRef = useRef<HTMLDivElement>(null);
-  useOutsideClick(
-    burgerMenuRef,
-    useCallback(() => setIsDrawerOpen(false), []),
-  );
+const Header: FunctionComponent<HeaderType> = ({
+  className = "",
+  tasks,
+  chevronLeft1,
+  menu,
+  headerAlignSelf,
+  headerPosition,
+  headerTop,
+  headerLeft,
+  headerWidth,
+}) => {
+  const headerStyle: CSSProperties = useMemo(() => {
+    return {
+      alignSelf: headerAlignSelf,
+      position: headerPosition,
+      top: headerTop,
+      left: headerLeft,
+      width: headerWidth,
+    };
+  }, [headerAlignSelf, headerPosition, headerTop, headerLeft, headerWidth]);
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
-      <div className="navbar-start w-auto lg:w-1/2">
-        <div className="lg:hidden dropdown" ref={burgerMenuRef}>
-          <label
-            tabIndex={0}
-            className={`ml-1 btn btn-ghost ${isDrawerOpen ? "hover:bg-secondary" : "hover:bg-transparent"}`}
-            onClick={() => {
-              setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
-            }}
-          >
-            <Bars3Icon className="h-1/2" />
-          </label>
-          {isDrawerOpen && (
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              onClick={() => {
-                setIsDrawerOpen(false);
-              }}
-            >
-              <HeaderMenuLinks />
-            </ul>
-          )}
+    <section
+      className={[styles.header, className].join(" ")}
+      style={headerStyle}
+    >
+      <div className={styles.iconButtonsubtledefaultmd}>
+        <img
+          className={styles.chevronLeftIcon}
+          loading="lazy"
+          alt=""
+          src="/chevronleft.svg"
+        />
+      </div>
+      <a className={styles.tasks}>{tasks}</a>
+      <div className={styles.iconButtonsubtledefaultmd1}>
+        <img
+          className={styles.chevronLeftIcon1}
+          loading="lazy"
+          alt=""
+          src={chevronLeft1}
+        />
+      </div>
+      <div className={styles.navigationPillList}>
+        <div className={styles.navigationPill}>
+          <div className={styles.title}>Link</div>
         </div>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
-          </div>
-        </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
-        </ul>
+        <div className={styles.navigationPill1}>
+          <div className={styles.title1}>Link</div>
+        </div>
+        <div className={styles.navigationPill2}>
+          <div className={styles.title2}>Link</div>
+        </div>
+        <div className={styles.navigationPill3}>
+          <div className={styles.title3}>Link</div>
+        </div>
+        <div className={styles.navigationPill4}>
+          <div className={styles.title4}>Link</div>
+        </div>
+        <div className={styles.navigationPill5}>
+          <div className={styles.title5}>Link</div>
+        </div>
       </div>
-      <div className="navbar-end flex-grow mr-4">
-        <DynamicWidget />
-        <FaucetButton />
+      <img className={styles.menuIcon} alt="" src={menu} />
+      <div className={styles.statusbar}>
+        <img className={styles.notchIcon} alt="" src="/notch.svg" />
+        <div className={styles.statusbarTime}>
+          <div className={styles.time}>9:41</div>
+        </div>
+        <div className={styles.signalStatus}>
+          <div className={styles.connectivity}>
+            <img
+              className={styles.iconMobileSignal}
+              alt=""
+              src="/icon--mobile-signal.svg"
+            />
+            <img className={styles.wifiIcon} alt="" src="/wifi.svg" />
+            <img
+              className={styles.statusbarBatteryIcon}
+              alt=""
+              src="/-statusbarbattery.svg"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
+
+export default Header;
