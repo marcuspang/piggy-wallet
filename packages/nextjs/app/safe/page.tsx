@@ -1,14 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ExternalLinkIcon, getNetwork, useDynamicContext, useSwitchNetwork } from "@dynamic-labs/sdk-react-core";
 import { createWalletClientFromWallet } from "@dynamic-labs/viem-utils";
+import { formatUnits } from "viem";
+import { baseSepolia, sepolia } from "viem/chains";
+import { useAccount, useBalance, useReadContract } from "wagmi";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
-import { formatUnits } from "viem";
-import { baseSepolia } from "viem/chains";
-import { useAccount, useBalance, useReadContract } from "wagmi";
 import { ERC20_ABI } from "~~/lib/ABI";
+import { installAutoswapModule, isAutoswapModuleInstalled } from "~~/lib/autoswap-module";
 import {
   TransactionDetails,
   getTokenTransfersOnBaseSepolia,
@@ -25,8 +26,10 @@ import {
   approveERC20,
   crossChainTransferERC20,
   getPimlicoSmartAccountClient,
-  transferERC20
+  pimlicoBundlerClient,
+  transferERC20,
 } from "~~/lib/permissionless";
+import { install7579Module } from "~~/lib/scheduled-transfers";
 import { notification } from "~~/utils/scaffold-eth";
 
 const SafePage = () => {
@@ -130,6 +133,28 @@ const SafePage = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleInstallModule = async () => {
+    const userAddress = address as `0x${string}`;
+    if (!primaryWallet || !chain) return;
+
+    if (!process.env.NEXT_PUBLIC_PIMLICO_API_KEY) {
+      notification.error("Please set NEXT_PUBLIC_PIMLICO_API_KEY in .env file and restart");
+      return;
+    }
+    const walletClient = await createWalletClientFromWallet(primaryWallet);
+    const client = await getPimlicoSmartAccountClient(userAddress, chain, walletClient);
+
+    isAutoswapModuleInstalled(client).then(console.log);
+
+    const opHash = await installAutoswapModule(client);
+    const bundlerClient = pimlicoBundlerClient(chain);
+    const receipt = await bundlerClient.waitForUserOperationReceipt({
+      hash: opHash,
+      timeout: 100000,
+    });
+    console.log({ receipt });
   };
 
   const handleERC20Transfer = async () => {
@@ -274,6 +299,9 @@ const SafePage = () => {
                 <div className="flex flex-row items-center gap-2">
                   <CheckCircleIcon className="w-6 h-6" />
                   <div className="text-lg font-bold">Safe Smart Wallet deployed!</div>
+                  <button className="btn btn-secondary" onClick={handleInstallModule}>
+                    Install module
+                  </button>
                   <a className="btn btn-secondary" href="https://faucet.circle.com/" rel="noopener" target="_blank">
                     Fund it from Faucet
                   </a>
@@ -468,12 +496,12 @@ const SafePage = () => {
         </div>
       ) : (
         <>
-          {isConnected && isAuthenticated && network !== baseSepolia.id ? (
+          {isConnected && isAuthenticated && network !== sepolia.id ? (
             <button
               className="btn btn-success"
-              onClick={() => switchNetwork({ wallet: primaryWallet!, network: baseSepolia.id })}
+              onClick={() => switchNetwork({ wallet: primaryWallet!, network: sepolia.id })}
             >
-              Switch to Base Sepolia
+              Switch to Sepolia
             </button>
           ) : (
             <button

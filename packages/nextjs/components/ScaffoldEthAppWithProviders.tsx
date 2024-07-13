@@ -2,6 +2,7 @@
 
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicContextProvider, mergeNetworks } from "@dynamic-labs/sdk-react-core";
+import { GenericNetwork } from "@dynamic-labs/types";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
@@ -38,7 +39,7 @@ export const queryClient = new QueryClient({
   },
 });
 
-const evmNetworks = [
+const evmNetworks: GenericNetwork[] = [
   ...scaffoldConfig.targetNetworks.map(chain => ({
     blockExplorerUrls: chain.blockExplorers
       ? Object.values(chain.blockExplorers as any).map(({ url }: any) => url)
@@ -47,9 +48,9 @@ const evmNetworks = [
     name: chain.name,
     rpcUrls: Object.values(chain.rpcUrls).map(({ http }) => http[0]),
     iconUrls: [
-      chain.name === "Hardhat"
-        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4i1wWF516fnkizp1WSDG5rnG8GfkQAVoVQ&s"
-        : "",
+      // chain.name === "Hardhat"
+      // ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4i1wWF516fnkizp1WSDG5rnG8GfkQAVoVQ&s"
+      "",
     ],
     nativeCurrency: chain.nativeCurrency,
     networkId: chain.id,
