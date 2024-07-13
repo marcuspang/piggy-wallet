@@ -1,0 +1,204 @@
+.weeklyAllowance {
+  position: relative;
+  line-height: 28px;
+}
+.allowanceLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs) 0 0;
+}
+.allowanceSubtitle {
+  position: relative;
+  font-size: var(--heading-mobile-h4-semi-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 51px;
+  white-space: nowrap;
+}
+.allowanceHeader {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.allowanceDivider {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--neutral-200);
+}
+.avatarIcon {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.mattsAllowance {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 111px;
+}
+.allowanceCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.actionSeparator {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 38px;
+  white-space: nowrap;
+}
+.edit02Icon,
+.iconButton {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.edit02Icon {
+  height: 13.3px;
+  width: 13.3px;
+  position: relative;
+}
+.iconButton {
+  height: 24px;
+  width: 24px;
+  border-radius: 21.33px;
+  background-color: var(--base-white);
+  border: 0.7px solid var(--neutral-200);
+  box-sizing: border-box;
+  justify-content: center;
+  padding: var(--padding-7xs-3) var(--padding-8xs) var(--padding-7xs-4);
+}
+.allowanceActions,
+.allowanceCardParent,
+.iconButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.allowanceActions {
+  justify-content: flex-start;
+  gap: var(--spacing-x-sm);
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--heading-mobile-h4-semi-bold);
+}
+.allowanceCardParent {
+  align-self: stretch;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.avatarIcon1 {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.lucysAllowance {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 112px;
+}
+.avatarParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.div {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 38px;
+  white-space: nowrap;
+}
+.edit02Icon1,
+.iconButton1 {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.edit02Icon1 {
+  height: 13.3px;
+  width: 13.3px;
+  position: relative;
+}
+.iconButton1 {
+  height: 24px;
+  width: 24px;
+  border-radius: 21.33px;
+  background-color: var(--base-white);
+  border: 0.7px solid var(--neutral-200);
+  box-sizing: border-box;
+  justify-content: center;
+  padding: var(--padding-7xs-3) var(--padding-8xs) var(--padding-7xs-4);
+}
+.allowanceCards,
+.frameParent,
+.iconButton1,
+.inputs,
+.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.parent {
+  justify-content: flex-start;
+  gap: var(--spacing-x-sm);
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--heading-mobile-h4-semi-bold);
+}
+.allowanceCards,
+.frameParent,
+.inputs {
+  align-self: stretch;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.allowanceCards,
+.inputs {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+  font-size: var(--paragraph-small-bold-size);
+}
+.inputs {
+  border-radius: var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  padding: var(--padding-7xs) var(--padding-mini);
+  gap: var(--spacing-sm);
+  text-align: left;
+  font-size: var(--paragraph-large-bold-size);
+  color: var(--neutral-700);
+  font-family: var(--paragraph-medium-bold);
+}

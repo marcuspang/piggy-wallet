@@ -144,9 +144,9 @@
   justify-content: center;
   padding: var(--padding-7xs) var(--padding-6xs);
   gap: var(--space-200);
-  font-size: var(--paragraph-medium-medium-size);
+  font-size: var(--paragraph-medium-bold-size);
   color: var(--neutral-900);
-  font-family: var(--paragraph-small-bold);
+  font-family: var(--paragraph-medium-bold);
 }
 .inputs,
 .savings,
@@ -161,7 +161,7 @@
   gap: var(--spacing-sm);
   font-size: var(--display-desktop-small-semibold-size);
   color: var(--black-500);
-  font-family: var(--heading-mobile-h6-semi-bold);
+  font-family: var(--heading-mobile-h4-semi-bold);
 }
 .inputs,
 .savings {
@@ -187,7 +187,7 @@
   letter-spacing: -0.02em;
   line-height: 32px;
   font-weight: 600;
-  font-family: var(--heading-mobile-h6-semi-bold);
+  font-family: var(--heading-mobile-h4-semi-bold);
   color: var(--black-500);
   display: inline-block;
   min-width: 46px;
@@ -212,7 +212,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: var(--padding-7xs) var(--padding-mini);
-  font-size: var(--paragraph-medium-medium-size);
+  font-size: var(--paragraph-medium-bold-size);
 }
 .starIcon1 {
   height: 16px;
@@ -224,11 +224,11 @@
 }
 .button3 {
   position: relative;
-  font-size: var(--paragraph-medium-medium-size);
+  font-size: var(--paragraph-medium-bold-size);
   line-height: 24px;
   display: inline-block;
-  font-family: var(--paragraph-small-bold);
-  color: var(--background-brand-tertiary);
+  font-family: var(--paragraph-medium-bold);
+  color: var(--text-brand-on-brand);
   text-align: left;
   min-width: 117px;
 }
@@ -263,7 +263,7 @@
   justify-content: flex-start;
   gap: var(--spacing-sm);
   text-align: left;
-  font-size: var(--heading-mobile-h6-semi-bold-size);
+  font-size: var(--paragraph-large-bold-size);
   color: var(--neutral-700);
-  font-family: var(--paragraph-small-bold);
+  font-family: var(--paragraph-medium-bold);
 }

@@ -1,0 +1,236 @@
+.allowanceAmount,
+.weeklyAllowance {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+}
+.allowanceAmount {
+  font-size: var(--heading-mobile-h4-semi-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 51px;
+  white-space: nowrap;
+}
+.weeklyAllowanceParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.nextPayment {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 94px;
+}
+.nextPaymentWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.nextPaymentDate {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 62px;
+}
+.frameGroup,
+.frameParent {
+  align-self: stretch;
+  display: flex;
+}
+.frameGroup {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+  font-size: var(--paragraph-small-bold-size);
+}
+.frameParent {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.allowanceChart {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--neutral-200);
+}
+.avatarIcon {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.mattsAllowance {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 111px;
+}
+.allowanceUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.actionSeparator {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 41px;
+  white-space: nowrap;
+}
+.edit02Icon,
+.iconButton {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.edit02Icon {
+  height: 13.3px;
+  width: 13.3px;
+  position: relative;
+}
+.iconButton {
+  height: 24px;
+  width: 24px;
+  border-radius: 21.33px;
+  background-color: var(--base-white);
+  border: 0.7px solid var(--neutral-200);
+  box-sizing: border-box;
+  justify-content: center;
+  padding: var(--padding-7xs-3) var(--padding-8xs) var(--padding-7xs-4);
+}
+.allowanceAction,
+.allowanceDetailContainer,
+.iconButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.allowanceAction {
+  justify-content: flex-start;
+  gap: var(--spacing-x-sm);
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--heading-mobile-h4-semi-bold);
+}
+.allowanceDetailContainer {
+  align-self: stretch;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.avatarIcon1 {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.lucysAllowance {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 112px;
+}
+.avatarParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.div {
+  position: relative;
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 38px;
+  white-space: nowrap;
+}
+.edit02Icon1 {
+  height: 13.3px;
+  width: 13.3px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.iconButton1,
+.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.iconButton1 {
+  height: 24px;
+  width: 24px;
+  border-radius: 21.33px;
+  background-color: var(--base-white);
+  border: 0.7px solid var(--neutral-200);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--padding-7xs-3) var(--padding-8xs) var(--padding-7xs-4);
+}
+.parent {
+  justify-content: flex-start;
+  gap: var(--spacing-x-sm);
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--heading-mobile-h4-semi-bold);
+}
+.allowanceDetailContainer1,
+.allowanceDetails,
+.inputs {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.allowanceDetails,
+.inputs {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+  font-size: var(--paragraph-small-bold-size);
+}
+.inputs {
+  border-radius: var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  padding: var(--padding-7xs) var(--padding-mini);
+  gap: var(--spacing-sm);
+  text-align: left;
+  font-size: var(--paragraph-medium-bold-size);
+  color: var(--neutral-700);
+  font-family: var(--paragraph-medium-bold);
+}

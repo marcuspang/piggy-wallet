@@ -32,7 +32,7 @@
   display: flex;
   justify-content: flex-start;
   gap: var(--gap-base);
-  font-size: var(--heading-mobile-h6-semi-bold-size);
+  font-size: var(--paragraph-large-bold-size);
   color: var(--black-500);
 }
 .saturday12July {
@@ -93,10 +93,10 @@
   font-weight: 500;
 }
 .missed25 {
-  font-size: var(--heading-mobile-h6-semi-bold-size);
+  font-size: var(--paragraph-large-bold-size);
   letter-spacing: -0.02em;
   font-weight: 600;
-  font-family: var(--heading-mobile-h6-semi-bold);
+  font-family: var(--heading-mobile-h4-semi-bold);
   color: var(--black-500);
   display: inline-block;
   min-width: 88px;
@@ -228,10 +228,10 @@
 }
 .earned2 {
   width: 79px;
-  font-size: var(--heading-mobile-h6-semi-bold-size);
+  font-size: var(--paragraph-large-bold-size);
   letter-spacing: -0.02em;
   font-weight: 600;
-  font-family: var(--heading-mobile-h6-semi-bold);
+  font-family: var(--heading-mobile-h4-semi-bold);
   color: var(--black-500);
 }
 .tidyYourBedParent {
@@ -320,10 +320,10 @@
 }
 .missed2 {
   width: 76px;
-  font-size: var(--heading-mobile-h6-semi-bold-size);
+  font-size: var(--paragraph-large-bold-size);
   letter-spacing: -0.02em;
   font-weight: 600;
-  font-family: var(--heading-mobile-h6-semi-bold);
+  font-family: var(--heading-mobile-h4-semi-bold);
   color: var(--black-500);
 }
 .walkTheDogParent {
@@ -393,7 +393,7 @@
 .saturdayList {
   gap: var(--spacing-sm);
   text-align: left;
-  font-size: var(--paragraph-medium-medium-size);
+  font-size: var(--paragraph-medium-bold-size);
   color: var(--neutral-900);
-  font-family: var(--paragraph-small-bold);
+  font-family: var(--paragraph-medium-bold);
 }

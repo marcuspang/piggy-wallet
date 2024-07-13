@@ -1,6 +1,6 @@
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   position: relative;
 }
 .inputs {
@@ -13,64 +13,59 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--padding-sm) var(--padding-10xl);
+  padding: var(--padding-xl) var(--padding-2xl);
 }
-.earn2,
-.walkTheDog {
+.lucysGeneralSavings {
   position: relative;
   line-height: 24px;
   font-weight: 500;
-  display: inline-block;
-  min-width: 101px;
 }
-.earn2 {
-  font-size: var(--paragraph-large-bold-size);
-  letter-spacing: -0.02em;
-  font-weight: 600;
-  font-family: var(--heading-mobile-h4-semi-bold);
-  color: var(--black-500);
-  min-width: 60px;
-}
-.taskName {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 var(--padding-xl) 0 0;
-}
-.checkIcon {
-  height: 32px;
-  width: 32px;
+.avatarIcon {
+  height: 22.4px;
+  width: 22.4px;
   position: relative;
+  border-radius: var(--br-7xs-6);
   overflow: hidden;
   flex-shrink: 0;
-  display: none;
+  object-fit: cover;
 }
-.checkbox,
-.taskLabel {
+.div,
+.nameAvatar {
+  align-self: stretch;
+}
+.nameAvatar {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
 }
-.checkbox {
-  height: 32px;
-  width: 32px;
-  border-radius: var(--br-5xs);
-  background-color: var(--base-white);
-  border: 1.5px solid var(--neutral-400);
-  box-sizing: border-box;
-  overflow: hidden;
-  flex-shrink: 0;
-  justify-content: center;
+.div {
+  position: relative;
+  font-size: var(--heading-mobile-h4-semi-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  white-space: nowrap;
 }
-.taskLabel {
+.autosave50 {
+  position: relative;
+  font-size: var(--paragraph-small-bold-size);
+  line-height: 20px;
+  color: var(--neutral-800);
+  display: inline-block;
+  min-width: 88px;
+}
+.savingsNameAvatar {
   align-self: stretch;
+  flex-direction: column;
   justify-content: flex-start;
-  gap: var(--gap-5xs);
 }
 .inputs1,
-.taskItem {
+.savingsInput,
+.savingsNameAvatar {
   display: flex;
   align-items: flex-start;
 }
@@ -84,13 +79,15 @@
   justify-content: center;
   padding: var(--padding-7xs) var(--padding-mini);
 }
-.taskItem {
+.savingsInput {
   align-self: stretch;
   flex-direction: row;
   justify-content: space-between;
   padding: 0;
+  flex-shrink: 0;
   gap: var(--gap-0);
   row-gap: 20px;
+  margin-top: -97px;
   text-align: left;
   font-size: var(--paragraph-medium-bold-size);
   color: var(--neutral-900);

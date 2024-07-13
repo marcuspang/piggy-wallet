@@ -289,7 +289,7 @@
   height: 77px;
   font-size: var(--paragraph-small-bold-size);
   color: var(--neutral-500);
-  font-family: var(--paragraph-small-bold);
+  font-family: var(--paragraph-medium-bold);
 }
 .frameChild {
   height: 4px;

@@ -286,7 +286,7 @@
   flex-shrink: 0;
   font-size: var(--paragraph-small-bold-size);
   color: var(--text-brand-default);
-  font-family: var(--paragraph-small-bold);
+  font-family: var(--paragraph-medium-bold);
 }
 .backgroundShape {
   height: 4px;

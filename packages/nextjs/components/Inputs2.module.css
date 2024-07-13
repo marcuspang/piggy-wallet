@@ -1,0 +1,90 @@
+.avatarIcon {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.withdrawal {
+  width: 89px;
+  height: 24px;
+  position: relative;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+}
+.icon {
+  height: 16px;
+  width: 16px;
+  position: relative;
+}
+.fortniteYearlySubscription,
+.substractedFrom {
+  margin: 0;
+}
+.substractedFromFortniteYearContainer {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.withdrawDetail,
+.withdrawItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.withdrawDetail {
+  align-self: stretch;
+  height: 40px;
+  flex-direction: row;
+  font-size: var(--paragraph-small-bold-size);
+}
+.withdrawItem {
+  flex: 1;
+  flex-direction: column;
+  min-width: 160px;
+}
+.withdrawSpacer {
+  height: 24px;
+  width: 45px;
+  position: relative;
+  font-size: var(--paragraph-large-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  display: flex;
+  align-items: center;
+}
+.inputs,
+.withdrawHistory {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.withdrawHistory {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs {
+  border-radius: var(--spacing-md);
+  background-color: var(--error-50);
+  border: 1px solid var(--error-600);
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+  text-align: left;
+  font-size: var(--paragraph-medium-bold-size);
+  color: var(--neutral-900);
+  font-family: var(--paragraph-medium-bold);
+}
