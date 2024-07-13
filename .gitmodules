@@ -10,3 +10,18 @@
 [submodule "packages/foundry/lib/smart-wallet"]
 	path = packages/foundry/lib/smart-wallet
 	url = https://github.com/coinbase/smart-wallet
+[submodule "packages/foundry/lib/safe-singleton-deployer-sol"]
+	path = packages/foundry/lib/safe-singleton-deployer-sol
+	url = https://github.com/wilsoncusack/safe-singleton-deployer-sol
+[submodule "packages/foundry/lib/account-abstraction"]
+	path = packages/foundry/lib/account-abstraction
+	url = https://github.com/eth-infinitism/account-abstraction
+[submodule "packages/foundry/lib/p256-verifier"]
+	path = packages/foundry/lib/p256-verifier
+	url = https://github.com/daimo-eth/p256-verifier
+[submodule "packages/foundry/lib/solady"]
+	path = packages/foundry/lib/solady
+	url = https://github.com/vectorized/solady
+[submodule "packages/foundry/lib/webauthn-sol"]
+	path = packages/foundry/lib/webauthn-sol
+	url = https://github.com/base-org/webauthn-sol
