@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { ExternalLinkIcon, getNetwork, useDynamicContext, useSwitchNetwork } from "@dynamic-labs/sdk-react-core";
 import { createWalletClientFromWallet } from "@dynamic-labs/viem-utils";
+import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { ClipboardIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 import { formatUnits } from "viem";
 import { baseSepolia } from "viem/chains";
 import { useAccount, useBalance, useReadContract } from "wagmi";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
-import { ClipboardIcon } from "@heroicons/react/24/outline";
 import { ERC20_ABI } from "~~/lib/ABI";
 import {
   TransactionDetails,
@@ -25,7 +25,7 @@ import {
   approveERC20,
   crossChainTransferERC20,
   getPimlicoSmartAccountClient,
-  transferERC20,
+  transferERC20
 } from "~~/lib/permissionless";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -114,7 +114,12 @@ const SafePage = () => {
       }
 
       const walletClient = await createWalletClientFromWallet(primaryWallet);
-      const { account } = await getPimlicoSmartAccountClient(userAddress, chain, walletClient);
+      const { account, deployContract, name, uid } = await getPimlicoSmartAccountClient(
+        userAddress,
+        chain,
+        walletClient,
+      );
+      console.log({ account, name, uid });
       setSafeAddress(account.address);
       setSafeDeployed(true);
       refetchSafeBalance();
@@ -164,8 +169,8 @@ const SafePage = () => {
     const transferDetails = [];
 
     if (!primaryWallet) return;
-    const transactions = await getTransactionsOnBaseSepolia(primaryWallet.address);
-    const transfers = await getTokenTransfersOnBaseSepolia(primaryWallet.address);
+    const transactions = (await getTransactionsOnBaseSepolia(primaryWallet.address)) ?? [];
+    const transfers = (await getTokenTransfersOnBaseSepolia(primaryWallet.address)) ?? [];
 
     for (const txHash of transactions) {
       const transactionDetail = await getTransactionOnBaseSepoliaByHash(txHash);
@@ -262,13 +267,13 @@ const SafePage = () => {
       </div>
 
       {safeDeployed ? (
-        <div className="flex flex-col justify-center items-center gap-4">
-          <div role="alert" className="alert w-fit border border-white">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div role="alert" className="border border-white alert w-fit">
             <div className="flex flex-row items-center gap-2">
               <div>
                 <div className="flex flex-row items-center gap-2">
                   <CheckCircleIcon className="w-6 h-6" />
-                  <div className="font-bold text-lg">Safe Smart Wallet deployed!</div>
+                  <div className="text-lg font-bold">Safe Smart Wallet deployed!</div>
                   <a className="btn btn-secondary" href="https://faucet.circle.com/" rel="noopener" target="_blank">
                     Fund it from Faucet
                   </a>
@@ -277,7 +282,7 @@ const SafePage = () => {
                   <p>Address: {safeAddress}</p>
                   {safeAddress && (
                     <div
-                      className="flex flex-row items-center gap-1  cursor-pointer hover:text-warning"
+                      className="flex flex-row items-center gap-1 cursor-pointer hover:text-warning"
                       onClick={() => copyToClipboard(safeAddress)}
                     >
                       <ClipboardIcon className="w-4 h-4" />
@@ -292,11 +297,11 @@ const SafePage = () => {
               </div>
             </div>
           </div>
-          <div role="tablist" className="tabs tabs-bordered w-full">
-            <input type="radio" name="my_tabs_1" role="tab" className="tab w-full" aria-label="ERC20 Transfer" />
-            <div role="tabpanel" className="tab-content p-10 w-full">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="flex flex-col gap-4 items-center justify-center w-full">
+          <div role="tablist" className="w-full tabs tabs-bordered">
+            <input type="radio" name="my_tabs_1" role="tab" className="w-full tab" aria-label="ERC20 Transfer" />
+            <div role="tabpanel" className="w-full p-10 tab-content">
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="flex flex-col items-center justify-center w-full gap-4">
                   {chain && (
                     <div className="btn btn-outline btn-xs" onClick={() => copyToClipboard(USDC_ADDRESS[chain.id])}>
                       <ClipboardIcon className="w-4 h-4" />
@@ -304,31 +309,31 @@ const SafePage = () => {
                     </div>
                   )}
 
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">Token Address</span>
                     <input
                       type="text"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0x1aB..."
                       value={transferTokenAddress}
                       onChange={e => setTransferTokenAddress(e.target.value)}
                     />
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">Amount</span>
                     <input
                       type="number"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0"
                       value={transferAmount}
                       onChange={e => setTransferAmount(Number(e.target.value))}
                     />
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">Recipient Address</span>
                     <input
                       type="text"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0x1aB..."
                       value={recipientAddress}
                       onChange={e => setRecipientAddress(e.target.value)}
@@ -344,7 +349,7 @@ const SafePage = () => {
                         "Send transaction"
                       )}
                     </button>
-                    <p className="text-warning text-xs">
+                    <p className="text-xs text-warning">
                       Make sure to have enough balance in the Safe account and the recipient address is valid.
                     </p>
                   </div>
@@ -355,40 +360,40 @@ const SafePage = () => {
               type="radio"
               name="my_tabs_1"
               role="tab"
-              className="tab  w-full"
+              className="w-full tab"
               aria-label="Crosschain USDC Transfer"
             />
-            <div role="tabpanel" className="tab-content p-10  w-full">
-              <div className="flex flex-col justify-center items-center gap-4">
-                <div className="flex flex-col gap-4 items-center justify-center w-full">
-                  <p className="text-warning text-xs">
+            <div role="tabpanel" className="w-full p-10 tab-content">
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="flex flex-col items-center justify-center w-full gap-4">
+                  <p className="text-xs text-warning">
                     This crosschain transfer supports only USDC from Base Sepolia to Arbitrum Sepolia
                   </p>
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">USDC Address</span>
                     <input
                       type="text"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0x1aB..."
                       value={crossChainTransferTokenAddress}
                       disabled={true}
                     />
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">Amount</span>
                     <input
                       type="number"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0"
                       value={crossChainTransferAmount}
                       onChange={e => setCrossChainTransferAmount(Number(e.target.value))}
                     />
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 w-full">
+                  <label className="flex items-center w-full gap-2 input input-bordered">
                     <span className="font-medium">Recipient Address</span>
                     <input
                       type="text"
-                      className="grow bg-transparent"
+                      className="bg-transparent grow"
                       placeholder="0x1aB..."
                       value={crossChainRecipientAddress}
                       onChange={e => setCrossChainRecipientAddress(e.target.value)}
@@ -408,17 +413,17 @@ const SafePage = () => {
                         "Send Crosschain transaction"
                       )}
                     </button>
-                    <p className="text-warning text-xs">
+                    <p className="text-xs text-warning">
                       Make sure to have enough balance in the Safe account and the recipient address is valid.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <input type="radio" name="my_tabs_1" role="tab" className="tab  w-full" aria-label="Transactions" />
-            <div role="tabpanel" className="tab-content p-10  w-full">
+            <input type="radio" name="my_tabs_1" role="tab" className="w-full tab" aria-label="Transactions" />
+            <div role="tabpanel" className="w-full p-10 tab-content">
               <div className="flex flex-col gap-4">
-                <button className="btn btn-outline btn-sm w-fit" onClick={refreshTransactions}>
+                <button className="btn btn-outline btn-sm w-fit" onClick={() => refreshTransactions()}>
                   {refreshingTransactions ? (
                     <>
                       <span className="loading loading-spinner"></span>Refreshing...
@@ -433,7 +438,7 @@ const SafePage = () => {
                       <div className="flex flex-col gap-1" key={tx.hash}>
                         <div className="flex flex-row gap-8">
                           <a target="_blank" href={`${BASE_SEPOLIA_BLOCKSCOUT_TX_BASE_URL}/${tx.hash}`}>
-                            <div className="flex flex-row gap-2 items-center">
+                            <div className="flex flex-row items-center gap-2">
                               {`${tx.hash.substring(0, 8)}...${tx.hash.substring(tx.hash.length - 8)}`}
                               <ExternalLinkIcon />
                             </div>
@@ -446,7 +451,7 @@ const SafePage = () => {
                       <div className="flex flex-col gap-1" key={tx.hash}>
                         <div className="flex flex-row gap-8">
                           <a target="_blank" href={`${BASE_SEPOLIA_BLOCKSCOUT_TX_BASE_URL}/${tx.hash}`}>
-                            <div className="flex flex-row gap-2 items-center">
+                            <div className="flex flex-row items-center gap-2">
                               {`${tx.hash.substring(0, 8)}...${tx.hash.substring(tx.hash.length - 8)}`}
                               <ExternalLinkIcon />
                             </div>
@@ -466,7 +471,7 @@ const SafePage = () => {
           {isConnected && isAuthenticated && network !== baseSepolia.id ? (
             <button
               className="btn btn-success"
-              onClick={() => switchNetwork({ wallet: primaryWallet, network: baseSepolia.id })}
+              onClick={() => switchNetwork({ wallet: primaryWallet!, network: baseSepolia.id })}
             >
               Switch to Base Sepolia
             </button>
@@ -487,7 +492,7 @@ const SafePage = () => {
               )}
             </button>
           )}
-          {error && <p className="text-red-500 mt-4">{error}</p>}
+          {error && <p className="mt-4 text-red-500">{error}</p>}
         </>
       )}
     </div>

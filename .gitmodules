@@ -25,3 +25,6 @@
 [submodule "packages/foundry/lib/webauthn-sol"]
 	path = packages/foundry/lib/webauthn-sol
 	url = https://github.com/base-org/webauthn-sol
+[submodule "packages/foundry/lib/v4-core"]
+	path = packages/foundry/lib/v4-core
+	url = https://github.com/Uniswap/v4-core
