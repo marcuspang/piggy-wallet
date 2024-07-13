@@ -4,40 +4,42 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/hardhat",
+      "packages/nextjs"
     ]
   },
   "scripts": {
-    "account": "yarn workspace @se-2/foundry account",
-    "chain": "yarn workspace @se-2/foundry chain",
-    "compile": "yarn workspace @se-2/foundry compile",
-    "deploy": "yarn workspace @se-2/foundry deploy",
-    "deploy:verify": "yarn workspace @se-2/foundry deploy:verify",
-    "flatten": "yarn workspace @se-2/foundry flatten",
-    "fork": "yarn workspace @se-2/foundry fork",
-    "format": "yarn next:format && yarn foundry:format",
-    "foundry:format": "yarn workspace @se-2/foundry format",
-    "foundry:lint": "yarn workspace @se-2/foundry lint",
-    "foundry:test": "yarn workspace @se-2/foundry test",
-    "generate": "yarn workspace @se-2/foundry generate",
-    "postinstall": "husky install",
-    "next:build": "yarn workspace @se-2/nextjs build",
-    "next:check-types": "yarn workspace @se-2/nextjs check-types",
-    "next:format": "yarn workspace @se-2/nextjs format",
-    "next:lint": "yarn workspace @se-2/nextjs lint",
-    "next:serve": "yarn workspace @se-2/nextjs serve",
-    "precommit": "lint-staged",
+    "account": "yarn workspace @se-2/hardhat account",
+    "chain": "yarn workspace @se-2/hardhat chain",
+    "fork": "yarn workspace @se-2/hardhat fork",
+    "deploy": "yarn workspace @se-2/hardhat deploy",
+    "verify": "yarn workspace @se-2/hardhat verify",
+    "hardhat-verify": "yarn workspace @se-2/hardhat hardhat-verify",
+    "compile": "yarn workspace @se-2/hardhat compile",
+    "generate": "yarn workspace @se-2/hardhat generate",
+    "flatten": "yarn workspace @se-2/hardhat flatten",
+    "hardhat:lint": "yarn workspace @se-2/hardhat lint",
+    "hardhat:lint-staged": "yarn workspace @se-2/hardhat lint-staged",
+    "hardhat:format": "yarn workspace @se-2/hardhat format",
+    "hardhat:test": "yarn workspace @se-2/hardhat test",
+    "test": "yarn hardhat:test",
+    "format": "yarn next:format && yarn hardhat:format",
     "start": "yarn workspace @se-2/nextjs dev",
-    "test": "yarn foundry:test",
+    "next:lint": "yarn workspace @se-2/nextjs lint",
+    "next:format": "yarn workspace @se-2/nextjs format",
+    "next:check-types": "yarn workspace @se-2/nextjs check-types",
+    "next:build": "yarn workspace @se-2/nextjs build",
+    "next:serve": "yarn workspace @se-2/nextjs serve",
+    "postinstall": "husky install",
+    "precommit": "lint-staged",
     "vercel": "yarn workspace @se-2/nextjs vercel",
-    "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo",
-    "verify": "yarn workspace @se-2/foundry verify"
-  },
-  "devDependencies": {
-    "husky": "~8.0.3",
-    "lint-staged": "~13.2.2"
+    "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo"
   },
   "packageManager": "yarn@3.2.3",
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3"
+  },
   "engines": {
     "node": ">=18.17.0"
   }

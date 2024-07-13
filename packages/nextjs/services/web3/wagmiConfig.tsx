@@ -1,20 +1,38 @@
-import { wagmiConnectors } from "./wagmiConnectors";
+import { getOrMapViemChain } from "@dynamic-labs/viem-utils";
 import { Chain, createClient, http } from "viem";
-import { hardhat, mainnet } from "viem/chains";
+import {
+  arbitrum,
+  arbitrumSepolia,
+  base,
+  baseSepolia,
+  hardhat,
+  mainnet,
+  polygon,
+  polygonAmoy,
+  scroll,
+  scrollSepolia,
+  sepolia,
+} from "viem/chains";
 import { createConfig } from "wagmi";
+import { customEvmNetworks } from "~~/lib/networks";
 import scaffoldConfig from "~~/scaffold.config";
 import { getAlchemyHttpUrl } from "~~/utils/scaffold-eth";
 
-const { targetNetworks } = scaffoldConfig;
-
-// We always want to have mainnet enabled (ENS resolution, ETH price, etc). But only once.
-export const enabledChains = targetNetworks.find((network: Chain) => network.id === 1)
-  ? targetNetworks
-  : ([...targetNetworks, mainnet] as const);
-
 export const wagmiConfig = createConfig({
-  chains: enabledChains,
-  connectors: wagmiConnectors,
+  chains: [
+    arbitrum,
+    arbitrumSepolia,
+    base,
+    baseSepolia,
+    mainnet,
+    polygon,
+    polygonAmoy,
+    scroll,
+    scrollSepolia,
+    sepolia,
+    hardhat,
+    ...customEvmNetworks.map(getOrMapViemChain),
+  ],
   ssr: true,
   client({ chain }) {
     return createClient({
