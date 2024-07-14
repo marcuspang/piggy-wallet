@@ -1,21 +1,28 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 Piggy Wallet
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+Piggy Wallet is a Smart Wallet that enables several functionality, similar to a form of no-code Smart Wallet. For instance, we support the following features:
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+- Auto-conversion of incoming ERC20s to USDC
+- Task system to reward users / wallet owners for completing tasks
+- Timelock system to give non-owners access after a certain time
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
+## How it works
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+For the auto-conversion of ERC20 tokens to USDC, we allow any user to initiate a UserOp which simply converts some ERC20 that is currently in the Safe Smart Wallet. This is to enable non-wallet owners to initiate this transaction for these users, and thereby have the "automatic" conversion feature.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+- This will be enhanced with 1inch Fusion API, leveraging the Resolver network to fulfil this swap
+
+For the task system, it is a simple mapping of task IDs to task details, which include the reward amount, token address, and deadline. There is no strict enforcement of whether the task has been completed satisfactorily, as the main use case is to reward individuals known to the sponsor, who can mediate this off-chain (e.g. parents and their children).
+
+Timelock is implemented by defining a timestamp for when the user can access the Safe Smart Wallet again. This is meant to be used in conjunction with plugins that support multiple owners.
+
+## Implementation Details
+
+Smart Wallet is implemented initially with Coinbase Smart Wallet, which we unfortunately were unable to deploy due to issues with the bundler. Read more in [foundry](./packages/foundry/README.md).
+
+We have since switched to using [Module Kit](https://github.com/rhinestonewtf/module-template) to create plugins for the Safe ERC7579 smart wallet. Read more in [module-kit](./packages/module-kit/README.md).
+
+Swapping of tokens is done through Uniswap V4, which is implemented in [module-kit](./packages/module-kit/README.md) as well. See this [test](./packages/module-kit/test/USDCSwapperExecute.t.sol) for more information.
 
 ## Requirements
 
@@ -27,54 +34,28 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+To get started, follow the steps below:
 
 1. Install dependencies if it was skipped in CLI:
 
 ```
-cd my-dapp-example
 yarn install
 ```
 
-2. Run a local network in the first terminal:
+2. Start NextJS app:
 
 ```
-yarn chain
-```
-
-This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
-```
-
-This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
+cd packages/nextjs
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+3. Run foundry tests:
 
-Run smart contract test with `yarn foundry:test`
+```
+cd packages/module-kit
+forge test -vvv --evm-version=cancun
+```
 
-- Edit your smart contract `YourContract.sol` in `packages/foundry/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/foundry/script`
+## Acknowledgements
 
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+This is a fork of [Scaffold-ETH 2](https://github.com/scaffold-eth/scaffold-eth-2).

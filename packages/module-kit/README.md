@@ -1,8 +1,10 @@
-## Module Template
+## Piggy Wallet Modules
 
-**A template for building smart account modules using the [ModuleKit](https://github.com/rhinestonewtf/modulekit)**
+Existing modules:
 
-## Using the template
+- BountyExecute: maintains bounty data structure
+- USDCSwapperExecute: swaps ERC20 tokens to USDC in Uniswap V4 pools
+- TimelockValidator: validates a userOp of a specific owner to ensure it has passed the timelock
 
 ### Install dependencies
 
@@ -76,6 +78,6 @@ To run the tests, run:
 forge test
 ```
 
-## Contributing
+## Acknowledgements
 
-For feature or change requests, feel free to open a PR, start a discussion or get in touch with us.
+This is a fork of [https://github.com/rhinestonewtf/modulekit](https://github.com/rhinestonewtf/modulekit).
