@@ -7,6 +7,16 @@ There are 2 main types:
 - `TimelockBountySmartWallet`: a Coinbase smart wallet with timelock and bounty features
 - `TimelockSmartWallet`: a Coinbase smart wallet with timelock features only
 
+## Addresses
+
+TimelockBountySmartWalletFactory.sol
+Network | Address
+--- | ---
+Ethereum Sepolia | 0xe297332936e26ba52fc3706469269ec912d1bcee
+Morph Holesky | 0xe297332936e26ba52fc3706469269ec912d1bcee
+Arbitrum Sepolia | 0xe297332936e26ba52fc3706469269ec912d1bcee
+Base Sepolia | 0xe297332936e26ba52fc3706469269ec912d1bcee
+
 ## Developing
 
 After cloning the repo, run the tests using Forge, from [Foundry](https://github.com/foundry-rs/foundry?tab=readme-ov-file)
