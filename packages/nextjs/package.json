@@ -15,6 +15,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@1inch/fusion-sdk": "2",
     "@dynamic-labs/ethereum": "^2.3.1",
     "@dynamic-labs/ethereum-aa": "^2.3.1",
     "@dynamic-labs/sdk-react-core": "^2.3.1",
