@@ -1,4 +1,9 @@
 import { type CSSProperties, FunctionComponent, useMemo } from "react";
+import { PlusIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "~~/components/ui/dialog";
+import { Input } from "~~/components/ui/input";
+import { Label } from "~~/components/ui/label";
+import { Select } from "~~/components/ui/select";
 
 export type Header3Type = {
   className?: string;
@@ -55,6 +60,42 @@ const Header3: FunctionComponent<Header3Type> = ({
       <div className="w-full !m-[0] absolute top-[0px] left-[0px] overflow-hidden shrink-0 flex flex-row items-end justify-between pt-3.5 pb-2 pr-[23px] pl-[27px] box-border gap-[20px] text-mid">
         <img className="h-8 w-[172px] relative hidden" alt="" src="/notch.svg" />
       </div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <button>
+            <PlusIcon className="absolute w-8 h-8 cursor-pointer right-10" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-5xl text-center font-heading-mobile-h6-semi-bold">
+              Are you absolutely sure?
+            </DialogTitle>
+          </DialogHeader>
+          <Label htmlFor="emoji" className="text-lg font-paragraph-small-bold">
+            Select an emoji
+          </Label>
+          <Input id="emoji" placeholder="" type="text" className="w-[95%] py-2 text-lg" />
+          <Label htmlFor="title" className="text-lg font-paragraph-small-bold">
+            Add a title
+          </Label>
+          <Input id="title" placeholder="" type="text" className="w-[95%] py-2 text-lg" />
+          <Label htmlFor="amount" className="text-lg font-paragraph-small-bold">
+            Insert amount to earn
+          </Label>
+          <Input id="amount" placeholder="" type="text" className="w-[95%] py-2 text-lg" />
+          <Label htmlFor="deadline" className="text-lg font-paragraph-small-bold">
+            Insert task deadline
+          </Label>
+          <Input id="deadline" placeholder="" type="text" className="w-[95%] py-2 text-lg" />
+          <Label htmlFor="deadline" className="text-lg font-paragraph-small-bold">
+            Who is this task assigned to?
+          </Label>
+          <Select>
+            <option>Matt</option>
+          </Select>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

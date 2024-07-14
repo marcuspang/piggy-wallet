@@ -71,7 +71,12 @@ const Footer: FunctionComponent<FooterType> = ({
           onClick={() => router.push("/parent")}
         >
           <div className="flex flex-row items-start justify-start px-2 py-0">
-            <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src={home03} />
+            <img
+              className={clsx("relative w-6 h-6 overflow-hidden shrink-0", pathname === "/parent" && "text-brand-500")}
+              loading="lazy"
+              alt=""
+              src={home03 ?? "/home03.svg"}
+            />
           </div>
           <b className="relative leading-[20px] inline-block min-w-[40px]">Home</b>
         </div>
@@ -83,7 +88,15 @@ const Footer: FunctionComponent<FooterType> = ({
           onCanPlay={() => router.push("/parent/goals")}
         >
           <div className="flex flex-row items-start justify-start py-0 pr-2 pl-[7px]">
-            <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src={flag02} />
+            <img
+              className={clsx(
+                "relative w-6 h-6 overflow-hidden shrink-0",
+                pathname === "/parent/goals" && "text-brand-500",
+              )}
+              loading="lazy"
+              alt=""
+              src={flag02 ?? "/flag02.svg"}
+            />
           </div>
           <b className="relative leading-[20px] inline-block min-w-[38px]">Goals</b>
         </div>
@@ -96,7 +109,10 @@ const Footer: FunctionComponent<FooterType> = ({
         >
           <div className="flex flex-row items-start justify-start py-0 px-[7px]">
             <img
-              className="relative w-6 h-6 overflow-hidden shrink-0"
+              className={clsx(
+                "relative w-6 h-6 overflow-hidden shrink-0",
+                pathname === "/parent/tasks" && "text-brand-500",
+              )}
               loading="lazy"
               alt=""
               src="/checksquarebroken.svg"
@@ -112,7 +128,12 @@ const Footer: FunctionComponent<FooterType> = ({
           onClick={() => router.push("/parent/settings")}
         >
           <div className="flex flex-row items-start justify-start px-4 py-0">
-            <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src="/settings01.svg" />
+            <img
+              className={clsx("relative w-6 h-6 overflow-hidden shrink-0", pathname === "/parent/settings" && "text-brand-500")}
+              loading="lazy"
+              alt=""
+              src="/settings01.svg"
+            />
           </div>
           <b className="relative leading-[20px] inline-block min-w-[56px]">Settings</b>
         </div>
