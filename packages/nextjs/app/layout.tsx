@@ -21,7 +21,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
         <link href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400;700&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </head>
-      <body className="max-w-lg mx-auto">
+      <body className="h-full max-w-lg mx-auto">
         <ThemeProvider enableSystem>
           <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
         </ThemeProvider>

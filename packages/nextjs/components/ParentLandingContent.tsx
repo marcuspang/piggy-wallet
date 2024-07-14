@@ -5,7 +5,7 @@ export type ContentType = {
   className?: string;
 };
 
-const Content: FunctionComponent<ContentType> = ({ className = "" }) => {
+const ParentLandingContent: FunctionComponent<ContentType> = ({ className = "" }) => {
   return (
     <section className={[styles.content, className].join(" ")}>
       <div className={styles.welcomeContainer}>
@@ -15,8 +15,7 @@ const Content: FunctionComponent<ContentType> = ({ className = "" }) => {
             <p className={styles.piggyWallet}>Piggy Wallet</p>
           </h1>
           <div className={styles.empoweringKidsIn}>
-            Empowering kids in high-inflation economies with secure crypto
-            savings accounts.
+            Empowering kids in high-inflation economies with secure crypto savings accounts.
           </div>
         </div>
         <div className={styles.buttonGroup}>
@@ -29,9 +28,7 @@ const Content: FunctionComponent<ContentType> = ({ className = "" }) => {
             <img className={styles.starIcon1} alt="" src="/star2.svg" />
             <div className={styles.button3}>
               <span>
-                <span className={styles.alreadyHaveAn}>
-                  Already have an account?
-                </span>
+                <span className={styles.alreadyHaveAn}>Already have an account?</span>
                 <b className={styles.b}>{` `}</b>
               </span>
               <b className={styles.logIn}>
@@ -46,4 +43,4 @@ const Content: FunctionComponent<ContentType> = ({ className = "" }) => {
   );
 };
 
-export default Content;
+export default ParentLandingContent;
