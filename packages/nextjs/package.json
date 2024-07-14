@@ -15,8 +15,9 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@dynamic-labs/ethereum": "^3.0.0-alpha.13",
-    "@dynamic-labs/sdk-react-core": "^3.0.0-alpha.13",
+    "@dynamic-labs/ethereum": "^2.3.1",
+    "@dynamic-labs/ethereum-aa": "^2.3.1",
+    "@dynamic-labs/sdk-react-core": "^2.3.1",
     "@dynamic-labs/viem-utils": "3.0.0-alpha.13",
     "@dynamic-labs/wagmi-connector": "^3.0.0-alpha.13",
     "@emotion/react": "^11.11.4",

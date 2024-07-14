@@ -72,8 +72,6 @@ contract USDCSwapperExecuteIntegrationTest is BaseIntegrationTest {
                                     VARIABLES
     //////////////////////////////////////////////////////////////////////////*/
 
-    address[] _tokens;
-
     IERC20 usdc = IERC20(USDC);
     IERC20 weth = IERC20(WETH);
     uint256 fork;
@@ -98,15 +96,10 @@ contract USDCSwapperExecuteIntegrationTest is BaseIntegrationTest {
 
         deal(address(usdc), instance.account, 299_530_108_791_371_697);
         deal(address(usdc), address(this), 299_530_108_791_371_697);
+        deal(address(usdc), address(executor), 299_530_108_791_371_697);
         deal(address(weth), instance.account, 299_530_108_791_371_697);
         deal(address(weth), address(this), 299_530_108_791_371_697);
-
-        usdc.approve(0xd74cc5d436923b8ba2c179b4bCA2841D8A52C5B5, type(uint256).max);
-        weth.approve(0xd74cc5d436923b8ba2c179b4bCA2841D8A52C5B5, type(uint256).max);
-
-        _tokens = new address[](2);
-        _tokens[0] = address(usdc);
-        _tokens[1] = address(weth);
+        deal(address(weth), address(executor), 299_530_108_791_371_697);
 
         bytes memory data = abi.encode(address(usdc), 0x1411060f44DA12017ADbB34De5f9238912dB2055);
 
@@ -118,13 +111,6 @@ contract USDCSwapperExecuteIntegrationTest is BaseIntegrationTest {
     }
 
     function testExec() public {
-        // Create a target address and send some ether to it
-        address target = makeAddr("target");
-        uint256 value = 1 ether;
-
-        // Get the current balance of the target
-        uint256 prevBalance = target.balance;
-
         // initialize pool
         address token0 = address(usdc);
         address token1 = address(weth);
@@ -142,6 +128,9 @@ contract USDCSwapperExecuteIntegrationTest is BaseIntegrationTest {
         manager.initialize(pool, 79_228_162_514_264_337_593_543_950_336, new bytes(0));
 
         // add liquidity
+        usdc.approve(address(lpRouter), type(uint256).max);
+        weth.approve(address(lpRouter), type(uint256).max);
+
         int24 tickLower = -600;
         int24 tickUpper = 600;
         int256 liquidity = 10e18;
@@ -156,12 +145,21 @@ contract USDCSwapperExecuteIntegrationTest is BaseIntegrationTest {
             new bytes(0)
         );
 
+        uint256 beforeUsdcBalance = usdc.balanceOf(address(executor));
+        uint256 beforeWethBalance = weth.balanceOf(address(executor));
+
         // Execute the call
         // EntryPoint -> Account -> Executor -> Account -> Target
         instance.exec({
             target: address(executor),
             value: 0,
-            callData: abi.encodeCall(USDCSwapperExecute.autoConvert, (address(weth), 1))
+            callData: abi.encodeCall(USDCSwapperExecute.autoConvert, (address(weth), 100, msg.sender))
         });
+
+        uint256 afterUsdcBalance = usdc.balanceOf(address(executor));
+        uint256 afterWethBalance = weth.balanceOf(address(executor));
+
+        assertGt(afterUsdcBalance - beforeUsdcBalance, 0);
+        assertEq(beforeWethBalance - afterWethBalance, 1);
     }
 }

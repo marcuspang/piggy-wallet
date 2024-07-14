@@ -24,7 +24,7 @@ const OnboardingSignUpScreen3: FunctionComponent<Props> = ({ values, nextStage }
             </div>
             <div className="mb-6">
               {values.map(({ name, birthday, email }, index) => (
-                <div className="items-start justify-start max-w-full p-6 text-base border rounded-lg text-text-default-default font-paragraph-small-bold bg-black/5">
+                <div key={index} className="items-start justify-start max-w-full p-6 text-base border rounded-lg text-text-default-default font-paragraph-small-bold bg-black/5">
                   <p className="mt-0 text-lg font-semibold">Child {index + 1}</p>
                   <div className="grid grid-cols-6 gap-x-4 gap-y-2">
                     <div className="col-span-2 font-semibold">Name</div>

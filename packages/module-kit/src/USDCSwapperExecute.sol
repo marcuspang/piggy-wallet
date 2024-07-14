@@ -17,24 +17,22 @@ contract USDCSwapperExecute is ERC7579ExecutorBase {
                             CONSTANTS & STORAGE
     //////////////////////////////////////////////////////////////////////////*/
 
-    /*//////////////////////////////////////////////////////////////////////////
-                                     CONFIG
-    //////////////////////////////////////////////////////////////////////////*/
+    uint160 public constant MIN_PRICE_LIMIT = TickMath.MIN_SQRT_PRICE + 1;
+    uint160 public constant MAX_PRICE_LIMIT = TickMath.MAX_SQRT_PRICE - 1;
 
     /*//////////////////////////////////////////////////////////////////////////
                                      CONFIG
     //////////////////////////////////////////////////////////////////////////*/
+
     struct SwapperConfig {
         address targetTokenAddress;
         address swapRouterAddress;
+        mapping(address tokenAddress => bool) isBlocked;
     }
 
-    mapping(address tokenAddress => bool) public isBlocked;
-    mapping(address tokenAddress => uint256) public tokensSwapped;
     SwapperConfig public config;
 
-    uint160 public constant MIN_PRICE_LIMIT = TickMath.MIN_SQRT_PRICE + 1;
-    uint160 public constant MAX_PRICE_LIMIT = TickMath.MAX_SQRT_PRICE - 1;
+    mapping(address account => mapping(address tokenAddress => uint256)) public tokensSwapped;
 
     /*//////////////////////////////////////////////////////////////////////////
                                      MODULE LOGIC
@@ -83,17 +81,20 @@ contract USDCSwapperExecute is ERC7579ExecutorBase {
      */
 
     /**
-     * ERC-7579 does not define any specific interface for fallbacks, so the
-     * fallback can implement any logic that is required for the specific usecase.
+     * This function can be called by anyone to convert the token to the target token in this smart
+     * wallet.
+     * This enables us to auto convert the token to the target token whenever the smart wallet
+     * receives anything.
+     *
+     * @param token The token to convert
+     * @param amountReceived The amount of tokens received
      */
-    function autoConvert(address token, uint256 amountReceived) external {
-        address account = msg.sender;
-
+    function autoConvert(address token, uint256 amountReceived, address account) external {
         // if not target token, we auto swap
         if (config.targetTokenAddress != token) {
             address swapRouter = config.swapRouterAddress;
 
-            // TODO: the other params should by dynamic
+            // TODO: pool key should be param, but simplified for now
             PoolKey memory key;
             IPoolManager.SwapParams memory params;
             bool zeroForOne = true;
@@ -127,14 +128,15 @@ contract USDCSwapperExecute is ERC7579ExecutorBase {
                 });
             }
 
-            IERC20(token).approve(address(swapRouter), amountReceived);
-            IERC20(config.targetTokenAddress).approve(address(swapRouter), amountReceived);
+            IERC20(token).approve(address(swapRouter), type(uint256).max);
+            IERC20(config.targetTokenAddress).approve(address(swapRouter), type(uint256).max);
 
             PoolSwapTest.TestSettings memory testSettings =
                 PoolSwapTest.TestSettings({ takeClaims: false, settleUsingBurn: false });
 
-            bytes memory hookData = new bytes(0); // no hook data on the hookless pool
-            PoolSwapTest(swapRouter).swap(key, params, testSettings, hookData);
+            PoolSwapTest(swapRouter).swap(key, params, testSettings, new bytes(0));
+
+            tokensSwapped[account][token] += amountReceived;
         }
     }
 

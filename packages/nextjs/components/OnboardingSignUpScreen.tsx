@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
-import Content from "../../../components/Content";
-import Header from "../../../components/Header";
+import Content from "./Content";
 
 const OnboardingSignUpScreen: FunctionComponent = () => {
   return (

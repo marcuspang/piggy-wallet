@@ -4,6 +4,8 @@ pragma solidity ^0.8.23;
 import "forge-std/Script.sol";
 import { RegistryDeployer } from "modulekit/deployment/RegistryDeployer.sol";
 import { USDCSwapperExecute } from "src/USDCSwapperExecute.sol";
+import { TimelockValidator } from "src/TimelockValidator.sol";
+import { BountyExecute } from "src/BountyExecute.sol";
 
 /// @title DeployModuleScript
 contract DeployModuleScript is Script, RegistryDeployer {
@@ -16,20 +18,25 @@ contract DeployModuleScript is Script, RegistryDeployer {
         bytes memory bytecode = type(USDCSwapperExecute).creationCode;
         bytes memory deployParams = "";
         bytes memory data = "";
+        bytes32 salt = bytes32(uint256(0));
 
         // Get private key for deployment
         vm.startBroadcast();
 
         // Deploy module
-        address module = deployModule({
-            code: bytecode,
-            deployParams: deployParams,
-            salt: bytes32("asdasd"),
-            data: abi.encode(usdc, poolSwapTest)
-        });
+        // address module = deployModule({
+        //     code: bytecode,
+        //     deployParams: deployParams,
+        //     salt: bytes32("asdasd"),
+        //     data: abi.encode(usdc, poolSwapTest)
+        // });
+        USDCSwapperExecute module1 = new USDCSwapperExecute{ salt: salt }();
+        console.log("Deploying module at: %s", address(module1)); // 0x5c97696418f4bf457676385ed6e0442001d3fe02
+        TimelockValidator module2 = new TimelockValidator{ salt: salt }();
+        console.log("Deploying module at: %s", address(module2)); // 0x991a4452dda8342887f6ded0ebfee43b4b372589
+        BountyExecute module3 = new BountyExecute{ salt: salt }();
+        console.log("Deploying module at: %s", address(module3)); // 0x0add469287b392a6ec4cedb0a81fa902237284ea
 
-        // Stop broadcast and log module address
         vm.stopBroadcast();
-        console.log("Deploying module at: %s", module); // 0x5775f31922e4e70a1AA1C37a8F28EcC7799cb159
     }
 }

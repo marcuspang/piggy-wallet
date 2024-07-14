@@ -9,9 +9,8 @@ import { LibSort } from "solady/utils/LibSort.sol";
 import { ECDSA } from "solady/utils/ECDSA.sol";
 
 /**
- * @title OwnableValidator
- * @dev Module that allows users to designate EOA owners that can validate transactions using a
- * threshold
+ * @title TimelockValidator
+ * @dev Module that allows users to designate a parent EOA owners that can validate transactions.
  * @author Rhinestone
  */
 contract TimelockValidator is ERC7579ValidatorBase {
@@ -22,9 +21,13 @@ contract TimelockValidator is ERC7579ValidatorBase {
     event ModuleInitialized(uint256 timelock, address parent, address child);
     event ModuleUninitialized();
 
-    address public parent;
-    address public child;
-    uint256 public timelock;
+    struct TimelockStruct {
+        address parent;
+        address child;
+        uint256 timelock;
+    }
+
+    mapping(address account => TimelockStruct) public timelockStorage;
 
     /*//////////////////////////////////////////////////////////////////////////
                                      CONFIG
@@ -41,11 +44,9 @@ contract TimelockValidator is ERC7579ValidatorBase {
         (uint256 _timelock, address _parent, address _child) =
             abi.decode(data, (uint256, address, address));
 
-        timelock = _timelock;
-        parent = _parent;
-        child = _child;
-
-        emit ModuleInitialized(timelock, parent, child);
+        timelockStorage[msg.sender] =
+            TimelockStruct({ timelock: _timelock, parent: _parent, child: _child });
+        emit ModuleInitialized(_timelock, _parent, _child);
     }
 
     /**
@@ -53,9 +54,9 @@ contract TimelockValidator is ERC7579ValidatorBase {
      * @dev the data parameter is not used
      */
     function onUninstall(bytes calldata) external override {
-        timelock = 0;
-        parent = address(0);
-        child = address(0);
+        timelockStorage[msg.sender].timelock = 0;
+        timelockStorage[msg.sender].parent = address(0);
+        timelockStorage[msg.sender].child = address(0);
 
         emit ModuleUninitialized();
     }
@@ -65,12 +66,15 @@ contract TimelockValidator is ERC7579ValidatorBase {
      *
      * @return true if the module is initialized, false otherwise
      */
-    function isInitialized() public view returns (bool) {
-        return timelock != 0 && parent != address(0) && child != address(0);
+    function isInitialized(address account) public view returns (bool) {
+        return timelockStorage[account].timelock != 0
+            && timelockStorage[account].parent != address(0)
+            && timelockStorage[account].child != address(0);
     }
 
     function isTimelocked() public view returns (bool) {
-        return timelock != 0 && block.timestamp >= timelock;
+        return timelockStorage[msg.sender].timelock != 0
+            && block.timestamp >= timelockStorage[msg.sender].timelock;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -150,7 +154,8 @@ contract TimelockValidator is ERC7579ValidatorBase {
         view
         returns (bool)
     {
-        return parent == msg.sender || (block.timestamp >= timelock);
+        return timelockStorage[msg.sender].parent == msg.sender
+            || (block.timestamp >= timelockStorage[msg.sender].timelock);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -166,7 +171,8 @@ contract TimelockValidator is ERC7579ValidatorBase {
         view
         returns (bool)
     {
-        return parent == account || (block.timestamp >= timelock);
+        return timelockStorage[account].parent == account
+            || (block.timestamp >= timelockStorage[account].timelock);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -190,7 +196,7 @@ contract TimelockValidator is ERC7579ValidatorBase {
      * @return name of the module
      */
     function name() external pure virtual returns (string memory) {
-        return "OwnableValidator";
+        return "TimelockValidator";
     }
 
     /**

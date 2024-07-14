@@ -6,8 +6,8 @@ import Card from "~~/components/Card";
 
 const ParentsHomepage = () => {
   return (
-    <div className="w-full h-[840px] relative rounded-xl bg-base-white overflow-hidden flex flex-col items-start justify-start pt-[5px] px-0 pb-[125px] box-border gap-[24px] leading-[normal] tracking-[normal]">
-      <section className="self-stretch bg-gray-100 box-border overflow-hidden flex flex-col items-end justify-start pt-3.5 px-0 pb-0 gap-[24px] shrink-0 max-w-full text-left text-base text-text-default-default font-single-line-body-base border-b-[1px] border-solid border-neutral-100">
+    <div className="w-full h-[840px] relative rounded-xl overflow-scroll bg-base-white flex flex-col items-start justify-start pt-[5px] px-0 pb-[125px] box-border gap-[24px] leading-[normal] tracking-[normal]">
+      <section className="self-stretch bg-gray-100 box-border flex flex-col items-end justify-start pt-3.5 px-0 pb-0 gap-[24px] shrink-0 max-w-full text-left text-base text-text-default-default font-single-line-body-base border-b-[1px] border-solid border-neutral-100">
         <div className="w-[262px] hidden flex-row flex-wrap items-center justify-end gap-[8px]">
           <div className="box-border flex flex-row items-center justify-center h-8 p-2 rounded-radius-200 bg-text-brand-on-brand">
             <div className="self-stretch relative leading-[100%] flex items-center">Link</div>

@@ -3,9 +3,11 @@
 import { FunctionComponent, useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface Props {}
+interface Props {
+  loading: boolean;
+}
 
-const OnboardingSignUpScreenComplete: FunctionComponent<Props> = ({}) => {
+const OnboardingSignUpScreenComplete: FunctionComponent<Props> = ({ loading }) => {
   const router = useRouter();
   return (
     <section className="w-full relative rounded-xl bg-base-white overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-4 box-border leading-[normal] tracking-[normal]">
@@ -16,10 +18,11 @@ const OnboardingSignUpScreenComplete: FunctionComponent<Props> = ({}) => {
         <div className="flex-1 items-center justify-center gap-[24px] max-w-full text-center mt-8 mb-12">
           <div className="self-stretch gap-[8px]">
             <h1 className="m-0 relative text-inherit text-5xl tracking-[-0.02em] leading-[36px] font-semibold font-inherit">
-              All setup!
+              {loading ? "Setting up your piggy wallets..." : "All setup!"}
             </h1>
             <div className="self-stretch relative text-base leading-[24px] font-medium font-paragraph-small-bold mb-6">
-              We have sent an email to your children with a link to access their piggy wallets
+              {!loading &&
+                "We have sent an email to your children with a link to access their piggy wallets. Please check your inbox."}
             </div>
           </div>
         </div>

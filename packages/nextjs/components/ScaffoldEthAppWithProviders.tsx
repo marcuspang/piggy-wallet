@@ -1,6 +1,7 @@
 "use client";
 
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { ZeroDevSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 import { DynamicContextProvider, mergeNetworks } from "@dynamic-labs/sdk-react-core";
 import { GenericNetwork } from "@dynamic-labs/types";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
@@ -62,7 +63,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
       theme={resolvedTheme === "dark" ? "dark" : "light"}
       settings={{
         environmentId: scaffoldConfig.dynamicEnvId,
-        walletConnectors: [EthereumWalletConnectors],
+        walletConnectors: [EthereumWalletConnectors, ZeroDevSmartWalletConnectors],
         overrides: {
           evmNetworks: networks => mergeNetworks(evmNetworks, networks),
         },

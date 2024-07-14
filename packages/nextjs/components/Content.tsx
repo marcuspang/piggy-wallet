@@ -1,7 +1,6 @@
 "use client";
 
 import { FunctionComponent } from "react";
-import { useRouter } from "next/navigation";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 export type ContentType = {
@@ -10,11 +9,6 @@ export type ContentType = {
 
 const Content: FunctionComponent<ContentType> = ({ className = "" }) => {
   const { setShowAuthFlow, isAuthenticated } = useDynamicContext();
-  const router = useRouter();
-
-  if (isAuthenticated) {
-    router.push("/parent/setup");
-  }
 
   return (
     <section

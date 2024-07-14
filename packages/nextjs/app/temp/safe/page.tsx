@@ -146,8 +146,6 @@ const SafePage = () => {
     const walletClient = await createWalletClientFromWallet(primaryWallet);
     const client = await getPimlicoSmartAccountClient(userAddress, chain, walletClient);
 
-    isAutoswapModuleInstalled(client).then(console.log);
-
     const opHash = await installAutoswapModule(client);
     const bundlerClient = pimlicoBundlerClient(chain);
     const receipt = await bundlerClient.waitForUserOperationReceipt({

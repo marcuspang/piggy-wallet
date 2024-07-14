@@ -1,4 +1,8 @@
+"use client";
+
 import { type CSSProperties, FunctionComponent, useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import clsx from "clsx";
 
 export type FooterType = {
   className?: string;
@@ -29,6 +33,8 @@ const Footer: FunctionComponent<FooterType> = ({
   navBarCoachLeft,
   navBarCoachFlex,
 }) => {
+  const pathname = usePathname();
+  const router = useRouter();
   const navBarCoach1Style: CSSProperties = useMemo(() => {
     return {
       alignSelf: navBarCoachAlignSelf,
@@ -53,23 +59,41 @@ const Footer: FunctionComponent<FooterType> = ({
 
   return (
     <footer
-      className={`self-stretch bg-gray-100 flex flex-col items-end justify-start pt-3.5 px-4 pb-[3px] gap-[9px] text-center text-sm text-text-default-secondary font-paragraph-small-bold ${className}`}
+      className={`self-stretch bg-gray-100 bottom-0 fixed max-w-lg mx-auto flex flex-col items-end justify-start pt-3.5 px-4 pb-[3px] gap-[9px] text-center text-sm text-text-default-secondary font-paragraph-small-bold ${className}`}
       style={navBarCoach1Style}
     >
       <div className="self-stretch flex flex-row items-start justify-between py-1 pr-[17px] pl-[25px] gap-[20px]">
-        <div className="flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px] text-brand-500">
+        <div
+          className={clsx(
+            "flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px] cursor-pointer hover:text-brand-500",
+            pathname === "/parent" && "text-brand-500",
+          )}
+          onClick={() => router.push("/parent")}
+        >
           <div className="flex flex-row items-start justify-start px-2 py-0">
             <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src={home03} />
           </div>
           <b className="relative leading-[20px] inline-block min-w-[40px]">Home</b>
         </div>
-        <div className="flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px]">
+        <div
+          className={clsx(
+            "flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px] cursor-pointer hover:text-brand-500",
+            pathname === "/parent/goals" && "text-brand-500",
+          )}
+          onCanPlay={() => router.push("/parent/goals")}
+        >
           <div className="flex flex-row items-start justify-start py-0 pr-2 pl-[7px]">
             <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src={flag02} />
           </div>
           <b className="relative leading-[20px] inline-block min-w-[38px]">Goals</b>
         </div>
-        <div className="flex flex-col items-start justify-start gap-[4px]">
+        <div
+          className={clsx(
+            "flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px] cursor-pointer hover:text-brand-500",
+            pathname === "/parent/tasks" && "text-brand-500",
+          )}
+          onClick={() => router.push("/parent/tasks")}
+        >
           <div className="flex flex-row items-start justify-start py-0 px-[7px]">
             <img
               className="relative w-6 h-6 overflow-hidden shrink-0"
@@ -80,7 +104,13 @@ const Footer: FunctionComponent<FooterType> = ({
           </div>
           <b className="relative leading-[20px] inline-block min-w-[38px]">Tasks</b>
         </div>
-        <div className="flex flex-col items-start justify-start gap-[4px]">
+        <div
+          className={clsx(
+            "flex flex-col items-start justify-start py-0 pr-2 pl-0 gap-[4px] cursor-pointer hover:text-brand-500",
+            pathname === "/parent/settings" && "text-brand-500",
+          )}
+          onClick={() => router.push("/parent/settings")}
+        >
           <div className="flex flex-row items-start justify-start px-4 py-0">
             <img className="relative w-6 h-6 overflow-hidden shrink-0" loading="lazy" alt="" src="/settings01.svg" />
           </div>
