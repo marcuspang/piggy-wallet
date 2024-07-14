@@ -56,6 +56,10 @@ cd packages/module-kit
 forge test -vvv --evm-version=cancun
 ```
 
+## Video Demo
+
+[Watch the video](https://www.loom.com/share/f97c3fb5f1e342269547280569b56dd4?sid=3dffdd65-e119-4f7d-8c9a-b2112e7f748d)
+
 ## Acknowledgements
 
 This is a fork of [Scaffold-ETH 2](https://github.com/scaffold-eth/scaffold-eth-2).
