@@ -35,32 +35,32 @@ const Footer: FunctionComponent<FooterType> = ({
 }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const navBarCoach1Style: CSSProperties = useMemo(() => {
-    return {
-      alignSelf: navBarCoachAlignSelf,
-      width: navBarCoachWidth,
-      margin: navBarCoachMargin,
-      position: navBarCoachPosition,
-      right: navBarCoachRight,
-      bottom: navBarCoachBottom,
-      left: navBarCoachLeft,
-      flex: navBarCoachFlex,
-    };
-  }, [
-    navBarCoachAlignSelf,
-    navBarCoachWidth,
-    navBarCoachMargin,
-    navBarCoachPosition,
-    navBarCoachRight,
-    navBarCoachBottom,
-    navBarCoachLeft,
-    navBarCoachFlex,
-  ]);
+  // const navBarCoach1Style: CSSProperties = useMemo(() => {
+  //   return {
+  //     alignSelf: navBarCoachAlignSelf,
+  //     width: navBarCoachWidth,
+  //     margin: navBarCoachMargin,
+  //     position: navBarCoachPosition,
+  //     right: navBarCoachRight,
+  //     bottom: navBarCoachBottom,
+  //     left: navBarCoachLeft,
+  //     flex: navBarCoachFlex,
+  //   };
+  // }, [
+  //   navBarCoachAlignSelf,
+  //   navBarCoachWidth,
+  //   navBarCoachMargin,
+  //   navBarCoachPosition,
+  //   navBarCoachRight,
+  //   navBarCoachBottom,
+  //   navBarCoachLeft,
+  //   navBarCoachFlex,
+  // ]);
 
   return (
     <footer
-      className={`self-stretch bg-gray-100 bottom-0 fixed max-w-lg mx-auto flex flex-col items-end justify-start pt-3.5 px-4 pb-[3px] gap-[9px] text-center text-sm text-text-default-secondary font-paragraph-small-bold ${className}`}
-      style={navBarCoach1Style}
+      className={`self-stretch bg-gray-100 bottom-0 fixed max-w-lg mx-auto flex flex-col items-end justify-start pt-3.5 px-4 pb-[3px] gap-[9px] text-center text-sm text-text-default-secondary w-full font-paragraph-small-bold ${className}`}
+      // style={navBarCoach1Style}
     >
       <div className="self-stretch flex flex-row items-start justify-between py-1 pr-[17px] pl-[25px] gap-[20px]">
         <div

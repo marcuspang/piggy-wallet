@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
 import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
@@ -20,6 +21,8 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap" />
         <link href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400;700&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <Script src="/script.js" />
       </head>
       <body className="h-full max-w-lg mx-auto">
         <ThemeProvider enableSystem>
