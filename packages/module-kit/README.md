@@ -6,6 +6,32 @@ Existing modules:
 - USDCSwapperExecute: swaps ERC20 tokens to USDC in Uniswap V4 pools
 - TimelockValidator: validates a userOp of a specific owner to ensure it has passed the timelock
 
+## Addresses
+
+### Ethereum Sepolia
+
+USDCSwapperExecute: 0x5c97696418f4bf457676385ed6e0442001d3fe02
+TimelockValidator: 0x991a4452dda8342887f6ded0ebfee43b4b372589
+BountyExecute: 0x0add469287b392a6ec4cedb0a81fa902237284ea
+
+### Base Sepolia
+
+USDCSwapperExecute: 0x5C97696418f4bf457676385ed6E0442001D3fE02
+TimelockValidator: 0x991A4452Dda8342887f6DeD0EBfee43B4B372589
+BountyExecute: 0x0aDD469287B392A6ec4cEdB0A81fA902237284ea
+
+### Arbitrum Sepolia
+
+USDCSwapperExecute: 0x5C97696418f4bf457676385ed6E0442001D3fE02
+TimelockValidator: 0x991A4452Dda8342887f6DeD0EBfee43B4B372589
+BountyExecute: 0x0aDD469287B392A6ec4cEdB0A81fA902237284ea
+
+### Morph Holesky
+
+USDCSwapperExecute: 0x5C97696418f4bf457676385ed6E0442001D3fE02
+TimelockValidator: 0x991A4452Dda8342887f6DeD0EBfee43B4B372589
+BountyExecute: 0x0aDD469287B392A6ec4cEdB0A81fA902237284ea
+
 ### Install dependencies
 
 ```shell
