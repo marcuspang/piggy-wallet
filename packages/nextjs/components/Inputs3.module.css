@@ -1,0 +1,235 @@
+.savingsOverview,
+.savingsSubtitle {
+  position: relative;
+  line-height: 28px;
+}
+.savingsSubtitle {
+  align-self: stretch;
+  font-size: var(--display-desktop-small-semibold-size);
+  letter-spacing: -0.02em;
+  line-height: 48px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  white-space: nowrap;
+}
+.savingsHeader {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-9xs);
+}
+.savingsDivider {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: var(--neutral-200);
+}
+.avatarIcon {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.mattsSavings {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 95px;
+}
+.savingsCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.cardSeparator {
+  position: relative;
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 80px;
+  white-space: nowrap;
+}
+.savingsCardParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.avatarIcon1 {
+  height: 22.4px;
+  width: 22.4px;
+  position: relative;
+  border-radius: var(--br-7xs-6);
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+  min-height: 22px;
+}
+.lucysSavings {
+  position: relative;
+  line-height: 20px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 96px;
+}
+.avatarParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-sm);
+}
+.div {
+  position: relative;
+  font-size: var(--heading-mobile-h5-semi-bold-size);
+  letter-spacing: -0.02em;
+  line-height: 28px;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h4-semi-bold);
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 54px;
+  white-space: nowrap;
+}
+.frameParent,
+.savingsCards {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.savingsCards {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+  font-size: var(--paragraph-small-bold-size);
+}
+.starIcon {
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.button1,
+.starIcon,
+.xIcon {
+  position: relative;
+}
+.button1 {
+  text-decoration: none;
+  font-size: var(--paragraph-medium-bold-size);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--paragraph-medium-bold);
+  color: var(--neutral-900);
+  text-align: left;
+  display: inline-block;
+  min-width: 80px;
+}
+.xIcon {
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.button {
+  cursor: pointer;
+  border: 1px solid var(--brand-500);
+  padding: var(--padding-7xs) var(--padding-19xl) var(--padding-7xs)
+    var(--padding-21xl);
+  background-color: var(--base-white);
+  border-radius: var(--radius-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--space-200);
+}
+.starIcon1 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.button3 {
+  position: relative;
+  font-size: var(--paragraph-medium-bold-size);
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--paragraph-medium-bold);
+  color: var(--neutral-900);
+  text-align: left;
+  display: inline-block;
+  min-width: 121px;
+}
+.xIcon1 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.button2,
+.inputs,
+.savingsCardActions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.button2 {
+  cursor: pointer;
+  border: 1px solid var(--brand-500);
+  padding: var(--padding-7xs) var(--padding-lg) var(--padding-7xs)
+    var(--padding-lgi);
+  background-color: var(--base-white);
+  border-radius: var(--radius-200);
+  overflow: hidden;
+  flex-direction: row;
+  gap: var(--space-200);
+}
+.inputs,
+.savingsCardActions {
+  align-self: stretch;
+}
+.savingsCardActions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-5xs);
+}
+.inputs {
+  border-radius: var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  flex-direction: column;
+  padding: var(--padding-sm) var(--padding-mini);
+  gap: var(--gap-xs);
+  text-align: left;
+  font-size: var(--paragraph-large-bold-size);
+  color: var(--neutral-700);
+  font-family: var(--paragraph-medium-bold);
+}

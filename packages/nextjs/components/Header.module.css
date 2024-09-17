@@ -1,0 +1,282 @@
+.chevronLeftIcon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.iconButtonsubtledefaultmd,
+.tasks {
+  position: absolute;
+  margin: 0 !important;
+}
+.iconButtonsubtledefaultmd {
+  height: var(--scale-07);
+  width: var(--scale-07);
+  top: 48px;
+  left: 24px;
+  border-radius: var(--scale-06);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-md) var(--padding-5xs);
+  box-sizing: border-box;
+}
+.tasks {
+  text-decoration: none;
+  flex: 1;
+  top: 56px;
+  left: 72px;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  font-weight: 500;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: inherit;
+  display: inline-block;
+}
+.chevronLeftIcon1 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.iconButtonsubtledefaultmd1 {
+  height: var(--scale-07);
+  width: var(--scale-07);
+  margin: 0 !important;
+  position: absolute;
+  top: 48px;
+  left: 329px;
+  border-radius: var(--scale-06);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-md) var(--padding-5xs);
+  box-sizing: border-box;
+  opacity: 0;
+}
+.title {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill,
+.title,
+.title1 {
+  display: flex;
+  align-items: center;
+}
+.navigationPill {
+  height: 32px;
+  border-radius: var(--radius-200);
+  background-color: var(--background-brand-tertiary);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.title1 {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill1 {
+  height: 32px;
+  border-radius: var(--radius-200);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.navigationPill1,
+.navigationPill2,
+.title2 {
+  display: flex;
+  align-items: center;
+}
+.title2 {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill2 {
+  height: 32px;
+  border-radius: var(--radius-200);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.title3 {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill3,
+.title3,
+.title4 {
+  display: flex;
+  align-items: center;
+}
+.navigationPill3 {
+  height: 32px;
+  border-radius: var(--radius-200);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.title4 {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill4 {
+  height: 32px;
+  border-radius: var(--radius-200);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.navigationPill4,
+.navigationPill5,
+.title5 {
+  display: flex;
+  align-items: center;
+}
+.title5 {
+  align-self: stretch;
+  position: relative;
+  line-height: 100%;
+}
+.navigationPill5 {
+  height: 32px;
+  border-radius: var(--radius-200);
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.navigationPillList {
+  height: 72px;
+  width: 262px;
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-200);
+  z-index: 3;
+  text-align: left;
+  font-size: var(--paragraph-medium-medium-size);
+  color: var(--text-default-default);
+}
+.menuIcon,
+.notchIcon {
+  position: relative;
+  display: none;
+}
+.menuIcon {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 4;
+}
+.notchIcon {
+  height: 32px;
+  width: 172px;
+}
+.time {
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+  font-weight: 600;
+}
+.statusbarTime {
+  width: 54px;
+  border-radius: var(--br-5xl);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+}
+.iconMobileSignal,
+.wifiIcon {
+  height: 12px;
+  width: 18px;
+  position: relative;
+}
+.wifiIcon {
+  height: 11.8px;
+  width: 17px;
+}
+.statusbarBatteryIcon {
+  align-self: stretch;
+  width: 27.4px;
+  position: relative;
+  max-height: 100%;
+  min-height: 13px;
+}
+.connectivity {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-5xs-5);
+}
+.signalStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-10xs);
+}
+.header,
+.statusbar {
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+}
+.statusbar {
+  width: 100%;
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: var(--padding-sm) var(--padding-4xl) var(--padding-5xs)
+    var(--padding-8xl);
+  gap: var(--gap-xl);
+  font-size: var(--font-size-mid);
+}
+.header {
+  align-self: stretch;
+  height: 100px;
+  background-color: var(--color-gray-100);
+  border-bottom: 1px solid var(--neutral-100);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-x-lg) var(--space-600) var(--spacing-sm);
+  position: relative;
+  gap: 0 5px;
+  text-align: center;
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--single-line-body-base);
+}

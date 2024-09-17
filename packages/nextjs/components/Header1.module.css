@@ -1,0 +1,106 @@
+.notchIcon {
+  width: 172px;
+  height: 32px;
+  position: relative;
+  display: none;
+}
+.time {
+  text-decoration: none;
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+  font-weight: 600;
+  color: inherit;
+}
+.statusbarTime {
+  width: 54px;
+  border-radius: var(--br-5xl);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+}
+.iconMobileSignal,
+.wifiIcon {
+  height: 12px;
+  width: 18px;
+  position: relative;
+}
+.wifiIcon {
+  height: 11.8px;
+  width: 17px;
+}
+.statusbarBatteryIcon {
+  align-self: stretch;
+  width: 27.4px;
+  position: relative;
+  max-height: 100%;
+  min-height: 13px;
+}
+.signalIcons {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-5xs-5);
+}
+.signalIconsWrapper {
+  width: 77.4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-10xs);
+  box-sizing: border-box;
+}
+.timeStatus {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+.icon {
+  text-decoration: none;
+  flex: 1;
+  position: relative;
+  line-height: 14px;
+  color: inherit;
+  white-space: nowrap;
+}
+.iconFontawesome {
+  flex: 1;
+  flex-direction: row;
+}
+.backIcon,
+.header,
+.iconFontawesome {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.backIcon {
+  width: 18px;
+  flex-direction: row;
+  padding: 0 var(--padding-8xs);
+  box-sizing: border-box;
+  font-size: var(--text-xs-light-size);
+  font-family: var(--font-abeezee);
+}
+.header {
+  align-self: stretch;
+  background-color: var(--brand-600);
+  flex-direction: column;
+  padding: var(--padding-sm) var(--padding-5xl) var(--padding-9xl)
+    var(--padding-9xl);
+  gap: var(--gap-15xl);
+  text-align: center;
+  font-size: var(--font-size-mid);
+  color: var(--base-white);
+  font-family: var(--single-line-body-base);
+}

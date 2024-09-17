@@ -1,0 +1,428 @@
+.todaysTasks {
+  position: relative;
+  line-height: 28px;
+  display: inline-block;
+  min-width: 121px;
+}
+.edit02Icon {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.currentHeader,
+.iconButton {
+  flex-direction: row;
+  align-items: center;
+}
+.iconButton {
+  height: 36px;
+  width: 36px;
+  border-radius: var(--scale-06);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  justify-content: center;
+  padding: var(--space-200);
+  box-sizing: border-box;
+}
+.currentHeader {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+.icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.inputs {
+  border-radius: var(--spacing-md) 0 var(--spacing-md) var(--br-base);
+  background-color: var(--brand-50);
+  border-top: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+  border-left: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-10xl);
+}
+.earn1,
+.tidyYourBed {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 105px;
+}
+.earn1 {
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: var(--black-500);
+  min-width: 57px;
+}
+.taskName {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-xl) 0 0;
+}
+.checkIcon {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.checkbox,
+.taskDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkbox {
+  height: 32px;
+  width: 32px;
+  border-radius: var(--br-5xs);
+  background-color: var(--base-white);
+  border: 1.5px solid var(--neutral-400);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.taskDetails {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs1,
+.taskItems {
+  display: flex;
+  align-items: flex-start;
+}
+.inputs1 {
+  width: 271px;
+  border-radius: 0 var(--spacing-md) var(--br-base) var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+}
+.taskItems {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--gap-0);
+  row-gap: 20px;
+}
+.icon1 {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.inputs2 {
+  border-radius: var(--spacing-md) 0 var(--spacing-md) var(--br-base);
+  background-color: var(--brand-50);
+  border-top: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+  border-left: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-10xl);
+}
+.earn2,
+.walkTheDog {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 101px;
+}
+.earn2 {
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: var(--black-500);
+  min-width: 60px;
+}
+.walkTheDogParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-xl) 0 0;
+}
+.checkIcon1 {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.checkbox1,
+.frameParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkbox1 {
+  height: 32px;
+  width: 32px;
+  border-radius: var(--br-5xs);
+  background-color: var(--base-white);
+  border: 1.5px solid var(--neutral-400);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.frameParent {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs3,
+.taskItems1 {
+  display: flex;
+  align-items: flex-start;
+}
+.inputs3 {
+  width: 271px;
+  border-radius: 0 var(--spacing-md) var(--br-base) var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+}
+.taskItems1 {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--gap-0);
+  row-gap: 20px;
+}
+.icon2 {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.inputs4 {
+  border-radius: var(--spacing-md) 0 var(--spacing-md) var(--br-base);
+  background-color: var(--brand-50);
+  border-top: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+  border-left: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-10xl);
+}
+.doYourHomework,
+.earn25 {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+}
+.earn25 {
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: var(--black-500);
+  display: inline-block;
+  min-width: 72px;
+}
+.doYourHomeworkParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-xl) 0 0;
+}
+.checkIcon2 {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.checkbox2,
+.frameGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkbox2 {
+  height: 32px;
+  width: 32px;
+  border-radius: var(--br-5xs);
+  background-color: var(--base-white);
+  border: 1.5px solid var(--neutral-400);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.frameGroup {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs5,
+.taskItems2 {
+  display: flex;
+  align-items: flex-start;
+}
+.inputs5 {
+  width: 271px;
+  border-radius: 0 var(--spacing-md) var(--br-base) var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+}
+.taskItems2 {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--gap-0);
+  row-gap: 20px;
+}
+.icon3 {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.inputs6 {
+  border-radius: var(--spacing-md) 0 var(--spacing-md) var(--br-base);
+  background-color: var(--brand-50);
+  border-top: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+  border-left: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-sm) var(--padding-10xl);
+}
+.callGrandma,
+.earn5 {
+  position: relative;
+  line-height: 24px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 103px;
+}
+.earn5 {
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-family: var(--heading-mobile-h6-semi-bold);
+  color: var(--black-500);
+  min-width: 59px;
+}
+.callGrandmaParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-xl) 0 0;
+}
+.checkIcon3 {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.checkbox3,
+.frameContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.checkbox3 {
+  height: 32px;
+  width: 32px;
+  border-radius: var(--br-5xs);
+  background-color: var(--base-white);
+  border: 1.5px solid var(--neutral-400);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.frameContainer {
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+}
+.inputs7 {
+  width: 271px;
+  border-radius: 0 var(--spacing-md) var(--br-base) var(--spacing-md);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--neutral-200);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-mini);
+}
+.currentList,
+.currentTasks,
+.taskItems3 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.taskItems3 {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--gap-0);
+  row-gap: 20px;
+}
+.currentList,
+.currentTasks {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--spacing-x-sm);
+  font-size: var(--paragraph-medium-medium-size);
+  color: var(--neutral-900);
+}
+.currentTasks {
+  gap: var(--spacing-sm);
+  text-align: left;
+  font-size: var(--heading-mobile-h6-semi-bold-size);
+  color: var(--black-500);
+  font-family: var(--paragraph-small-bold);
+}
